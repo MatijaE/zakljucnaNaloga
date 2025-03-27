@@ -1,0 +1,12 @@
+app-funkcionalnosti
+
+-shranjevanje vseh kontaktnih podatkov
+-unikatna povezava za vsak profil
+-deljenje podatkov preko QR-kode
+-možnost dodajanja profilnih slik
+-nastavitev zasebnosti- kaj je lahko dostopno vsem
+---generiranje vizitke z AI - lepo razporedi podatke
+
+-uporaba markdown
+
+izgled - slike kako bi izgledal profil uporabnika... canvas
