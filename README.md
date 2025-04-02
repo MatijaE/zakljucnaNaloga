@@ -28,6 +28,7 @@ Markdown je uporabljeno za preprost in pregleden prikaz vseh informacij, brez pr
 
 Za telefon:
 https://github.com/MatijaE/zakljucnaNaloga/blob/main/poslovniDel/telefon_liveCard.png
+
 Za računalnik:
 https://github.com/MatijaE/zakljucnaNaloga/blob/main/poslovniDel/rac%CC%8C_liveCard.png
 
