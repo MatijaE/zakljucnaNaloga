@@ -26,6 +26,11 @@ Markdown je uporabljeno za preprost in pregleden prikaz vseh informacij, brez pr
 
 ## 3. **Izgled - Primeri Profilov**
 
+Za telefon:
+https://github.com/MatijaE/zakljucnaNaloga/blob/main/poslovniDel/telefon_liveCard.png
+Za računalnik:
+https://github.com/MatijaE/zakljucnaNaloga/blob/main/poslovniDel/rac%CC%8C_liveCard.png
+
 ---
 
 ## **POSLOVNI DEL (30%)**
