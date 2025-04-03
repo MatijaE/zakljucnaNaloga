@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiveCard - Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Dobrodošli na nadzorni plošči</h1>
+    {% if is_admin %}
+        <p>Prijavljeni ste kot administrator.</p>
+    {% else %}
+        <p>Prijavljeni ste kot običajen uporabnik.</p>
+    {% endif %}
+    <a href="{{ url_for('logout_user') }}">Odjava</a>    
+</body>
+</html>
