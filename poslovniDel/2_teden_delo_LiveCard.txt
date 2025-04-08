@@ -1,0 +1,94 @@
+TEDEN 2 – DOKONČANJE POSLOVNE ANALIZE IN NAČRTOVANJE MVP-JA
+
+1. MVP – Minimal Viable Product (osnovna verzija, ki že ponuja ključne funkcionalnosti):
+   - Registracija uporabnika (ime, priimek, e-mail, geslo)
+   - Prijava uporabnika (z e-pošto in geslom)
+   - Možnost prijave kot admin (različna vloga)
+   - Profilna stran uporabnika (prikaz kontaktnih podatkov)
+   - Generiranje unikatne povezave za vsak profil (na podlagi e-mail naslova)
+   - Generiranje QR kode, ki vodi na profilno povezavo
+   - Možnost urejanja kontaktnih podatkov
+   - **SKENIRANJE QR KODE ZNOTRAJ APLIKACIJE**:
+     - Uporabnik lahko odpre kamero neposredno v aplikaciji
+     - Skenirana povezava (LiveCard profil) se odpre znotraj aplikacije
+     - Povezani stik se shrani v zgodovino uporabnika
+     - Zgodovina stikov se prikazuje na ločeni strani (možnost izbrisa posameznih stikov)
+
+2. IDEJE IN FUNKCIONALNOSTI ZA RAZVOJ MVP:
+   - Vloga uporabnika:
+     - navaden uporabnik (ustvari in deli profil)
+     - admin (dostop do seznama vseh uporabnikov, možnost moderacije)
+   - Email kot glavni identifikator:
+     - vsak profil dostopen prek npr. `/profile/<email-hash>`
+     - omogoča enoličnost in enostavno deljenje
+   - QR koda:
+     - generira se avtomatsko po registraciji
+     - vodi na URL s profilom
+   - SKENIRANJE QR KODE:
+     - frontend: uporaba `html5-qrcode` ali podobne knjižnice (JS)
+     - backend: ob vsakem uspešnem skeniranju se stik zapiše v bazo
+     - uporabnik vidi seznam vseh "skeniranih" oseb
+     - gumb za "odpri stik", "izbriši stik"
+   - Uporabniški vmesnik (UI):
+     - enostaven in pregleden
+     - Jinja2 templating za dinamično vsebino
+     - stran z zgodovino stikov
+   - Shranjevanje profilnih podatkov:
+     - ime, priimek, email, telefon, podjetje, opis, povezave na družbena omrežja
+   - Backend zaščita:
+     - zaščita dostopa do podatkov z Flask-Login
+     - bcrypt za šifriranje gesel
+   - Validacija:
+     - preverjanje formata emaila
+     - geslo vsaj 8 znakov, z vsaj 1 številko
+   - Obvladovanje napak:
+     - sporočila za napačne vnose, nedelujoče povezave, ponavljajoč email
+
+3. TEHNIČNE STVARI, KI JIH BO TREBA PRIPRAVITI:
+   ✅ Flask projektna struktura (Blueprints, templates, static)
+   ✅ SQLite baza (ali kasneje PostgreSQL)
+   ✅ Uporabniški model z SQLAlchemy:
+      - id, ime, priimek, email, hashed geslo, admin (bool), token_link
+   ✅ Model za zgodovino stikov:
+      - id, owner_id (lastnik profila), contact_email, contact_name, datum
+   ✅ Registracija:
+      - obrazec, validacija, zapis v bazo
+   ✅ Prijava:
+      - preverjanje emaila in gesla, začetek seje
+   ✅ Admin sistem:
+      - preprost boolean flag v bazi
+      - če je uporabnik admin, lahko dostopa do `/admin`
+   ✅ Profilna stran:
+      - prikaz vseh podatkov
+      - dostop do nje preko `/profile/<token>`
+   ✅ QR koda:
+      - uporaba knjižnice `qrcode` za generiranje slike s povezavo
+   ✅ Frontend:
+      - osnovni CSS, lep izgled profilov
+      - podpora za QR skener (JS knjižnica, dostop do kamere)
+   ✅ Zgodovina:
+      - tabela s skeniranimi profili (za vsak uporabniški račun)
+      - možnost ogleda in brisanja
+
+4. PAZITI BO TREBA NA:
+   ⚠️ Shranjevanje gesel (nikoli v navadnem tekstu!)
+   ⚠️ Email mora biti unikat v bazi
+   ⚠️ Profilne strani naj bodo zasebne – neindeksirane v Google (robots.txt)
+   ⚠️ QR kode naj se generirajo le za verificirane profile
+   ⚠️ Avtentikacija se mora izvajati prek sej (Flask-Login)
+   ⚠️ Zaščita admina pred zlorabo (dodatna preverjanja)
+   ⚠️ Varnost pri uporabi kamere (zahtevaj dovoljenje uporabnika)
+   ⚠️ Ne shranjuj duplikatov v zgodovino (en stik naj se shrani samo enkrat)
+
+5. PRIPOROČILA:
+   ⭐ Najprej implementiraj backend logiko (auth sistem), potem frontend
+   ⭐ Uporabi testne uporabnike za razvoj (npr. `test1@mail.com`)
+   ⭐ Dokumentiraj vse funkcije v kodi – olajšalo bo predstavitev
+   ⭐ Razmisli o modularnosti kode – da bo MVP nadgradljiv (premium funkcije ipd.)
+   ⭐ Načrtuj že zdaj strukturo URL-jev (REST logika)
+
+6. NASLEDNJI KORAKI (za 3. teden):
+   - Začetek implementacije auth sistema (register, login)
+   - Prva verzija uporabniškega modela
+   - Osnovna HTML/CSS struktura profilne strani
+   - Dodajanje QR skenerja na testno stran in testiranje zajema podatkov
