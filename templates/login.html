@@ -1,17 +1,30 @@
 <!DOCTYPE html>
-<html lang="sl">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LiveCard - Login</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="UTF-8">
+  <title>Login - LiveCard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <form method="POST">
-        <input type="email" name="email" placeholder="E-pošta" required>
-        <input type="password" name="password" placeholder="Geslo" required>
-        <button type="submit">Prijava</button>
-    </form>
-    <a href="{{ url_for('register_user') }}">Ustvari račun</a>    
+  <div class="wrapper">
+    <div class="form-wrapper sign-in">
+      <form method="POST">
+        <h2>Login</h2>
+        {% if error %}<p style="color:red">{{ error }}</p>{% endif %}
+        <div class="input-group">
+          <input type="text" name="username" required>
+          <label>Username</label>
+        </div>
+        <div class="input-group">
+          <input type="password" name="password" required>
+          <label>Password</label>
+        </div>
+        <button type="submit">Login</button>
+        <div class="signUp-link">
+          <p>Don't have an account? <a href="{{ url_for('register') }}">Sign Up</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
 </body>
 </html>
