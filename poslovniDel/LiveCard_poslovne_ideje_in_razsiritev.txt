@@ -1,0 +1,120 @@
+LIVE CARD – POSLOVNI RAZVOJ IN NADGRADNJE
+
+1. DODATNE FUNKCIONALNOSTI APLIKACIJE
+
+🔹 a) Napredni profil
+   - Dodajanje profilne slike
+   - Ozadje (cover image)
+   - Personalizirani barvni stil profila
+   - Dodajanje dokumentov (CV, ponudbe, predstavitve)
+   - Vgrajen gumb za "Shrani kontakt kot .vcf (digitalni vCard)"
+
+🔹 b) Analitika obiska
+   - Koliko ljudi je obiskalo tvoj profil
+   - Iz katere naprave, lokacije
+   - Kolikokrat je bila QR koda skenirana
+   - Možnost vključitve Google Analytics ali lastne mini statistike
+
+🔹 c) Možnost "spletne vizitke v PDF"
+   - Gumb: “Prenesi PDF vizitko”
+   - Vizualno oblikovan izvoz vsebine profila v ličen dokument
+
+🔹 d) Možnost personalizirane domene
+   - Namesto `livecard.app/profile/ime`, bi premium uporabniki lahko imeli `ime.livecard.app`
+   - Ali povezali svojo domeno (npr. `kontakt.matijaerzen.si`)
+
+🔹 e) Networking funkcionalnosti
+   - “Dodaj v kontakte” – pošiljanje zahteve med uporabniki
+   - Chat znotraj platforme
+   - Priporočanje kontaktov glede na industrijo/interese
+
+🔹 f) Dogodki in "Live Exchange Mode"
+   - Na dogodkih se udeleženci "vidijo" prek geolokacije
+   - Vsi lahko z enim klikom izmenjajo kontakte na dogodku
+   - Možnost ustvarjanja QR kode za dogodek (vsi povezani s tistim dogodkom)
+
+🔹 g) Integracije
+   - Integracija z LinkedIn, Outlook, Gmail kontakti
+   - Shrani stik direktno v Google Contacts
+
+🔹 h) Opomniki in follow-up
+   - Uporabnik lahko nastavi opomnik "Pošlji e-mail čez 3 dni po srečanju"
+   - E-mail predloge (follow-up e-pošta, zahvalno sporočilo)
+
+🔹 i) Skeniranje fizične vizitke
+   - OCR tehnologija za prepoznavo teksta s fotografirane vizitke
+   - Samodejno ustvarjanje kontakta iz fizične vizitke
+
+🔹 j) Podpora več jezikom
+   - Vmesnik v slovenščini, angleščini itd.
+   - Samodejno prilagajanje jezika glede na brskalnik
+
+2. POSLOVNI MODEL – MONETIZACIJA
+
+💸 a) Freemium model
+   - Osnovni profil (QR koda, en profil, omejeno število kontaktov) – brezplačno
+   - Premium paket (več profilov, PDF, analitika, lastna domena, napredna analitika) – npr. 3€/mesec ali 20€/leto
+
+💼 b) Business accounts
+   - Paketi za podjetja (do 10, 50, 100 zaposlenih)
+   - Centralno upravljanje profilov vseh zaposlenih
+   - Enotna grafična predloga
+   - QR koda za ekipo (npr. team.livecard.app)
+
+🎯 c) Partnerski model
+   - Sodelovanje z organizatorji dogodkov (npr. startup vikendi, sejmi)
+   - Uporabniki prejmejo QR kodo skupaj z vstopnico
+   - Znižana cena ob registraciji prek partnerja
+
+📈 d) Digitalna trgovina (v prihodnosti)
+   - Prodaja predlog za profile (template designi)
+   - Grafična orodja za izdelavo PDF vizitke
+
+3. PROMOCIJSKE IDEJE
+
+📢 a) Sodelovanje z influencerji
+   - Tehnološki vplivneži, podjetniki, mladi ustvarjalci
+   - Promocija na TikToku, Instagramu (kako hitro zamenjati vizitke)
+
+📢 b) QR kampanja v realnem svetu
+   - Nalepke s QR kodami na lokacijah
+   - "Skeniraj me in spoznaj moj profil"
+
+📢 c) Šolski/študentski paketi
+   - Brezplačen dostop za šole in univerze (osebni kontaktni profil za vsak projekt)
+   - Skupinski profili za razrede
+
+📢 d) LinkedIn objave
+   - Primer: "Zakaj sem zamenjal svojo papirnato vizitko za digitalno"
+   - Video prikazi: ustvarjanje profila, deljenje QR kode v živo
+
+📢 e) E-mail kampanja
+   - Pošiljanje ponudb majhnim podjetjem, start-upom, coworking prostorom
+   - Poudarek na profesionalnem vtisu in hitrosti deljenja
+
+📢 f) Nastop na tekmovanjih in Startup dogodkih
+   - Prijava na mlade podjetniške inkubatorje (npr. Ustvari prihodnost, Start-up Slovenija)
+
+📢 g) Open beta testiranje
+   - Povabi prijatelje in znance k testiranju aplikacije
+   - Povratne informacije za izboljšave
+   - “Share to get early access” sistem
+
+4. DOLGOROČNA VIZIJA
+
+🔮 Razširitev platforme:
+   - Možnost sinhronizacije s CRM sistemi
+   - Personalizirani "Landing page" za vsak uporabnik
+   - Digitalna identiteta uporabnika (kot "LinkedIn profil v živo")
+
+🔐 Zasebnost in varnost:
+   - Močan poudarek na GDPR, možnost anonimizacije
+   - Možnost skrivanja določenih podatkov na profilni strani
+
+🌍 Globalna uporaba:
+   - Lokalizacija za različne jezike
+   - Vgrajena podpora za več valut za podjetja
+
+🧠 Uporaba umetne inteligence:
+   - Priporočanje stikov glede na uporabnikov profil
+   - Samodejni povzetek profila iz socialnih omrežij

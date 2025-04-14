@@ -1,6 +1,6 @@
-# LiveCard - Digitalna Vizitka
+# LiveCard - digitalna vizitka
 
-## 1. **App Funkcionalnosti**
+## 1. **App funkcije**
 
 - **Shranjevanje vseh kontaktnih podatkov**  
   Vse kontaktne informacije uporabnika, vključno s telefonskimi številkami, e-poštami, socialnimi omrežji, bodo shranjene v digitalnem profilu.
@@ -20,11 +20,11 @@
 - **Generiranje vizitke z AI**  
   Aplikacija bo uporabniku omogočila generiranje vizitke z uporabo umetniške inteligence, ki bo lepo razporedila vse podatke.
 
-## 2. **Uporaba Markdown**
+## 2. **Uporaba markdown**
 
 Markdown je uporabljeno za preprost in pregleden prikaz vseh informacij, brez prekompleksnih oblikovanj. Sledi osnovnim smernicam za ustvarjanje strukturiranega besedila.
 
-## 3. **Izgled - Primeri Profilov**
+## 3. **Izgled - primeri profilov**
 
 Za telefon:
 https://github.com/MatijaE/zakljucnaNaloga/blob/main/poslovniDel/telefon_liveCard.png
