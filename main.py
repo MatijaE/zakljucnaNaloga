@@ -2,8 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import json
 import os
 
-#app = Flask(__name__)
-#app.secret_key = "ključčč"
+app = Flask(__name__)
+app.secret_key = "ključčč"
 
 USERS_FILE = "users.json"
 
@@ -69,6 +69,19 @@ def admin_dashboard():
 
     users = load_users()
     return render_template("admin_dashboard.html", users=users)
+
+@app.route("/delete_user/<username>")
+def delete_user(username):
+    if not session.get("is_admin"):
+        return redirect(url_for("login"))
+
+    users = load_users()
+
+    if username in users:
+        users.pop(username)
+        save_users(users)
+    
+    return redirect(url_for("admin_dashboard"))
 
 @app.route("/dashboard")
 def user_dashboard():

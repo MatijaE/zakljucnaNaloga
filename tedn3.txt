@@ -1,0 +1,21 @@
+livecard
+-login
+-register
+-css
+-admin, user dashboard
+-admin briše uporabnike
+-.json (z load_users in save_users)
+
+-prestavi iz .json v sqlLite/tinyDB bazo!
+Sistem 	| Enostavnost 		 | Hitrost (več podatkov) | Stabilnost 		| Primeren za več uporabnikov
+JSON 	| ✅ Zelo enostavno  | ❌ Počasno 			| ❌ Manj varno 		| ❌ Slabo
+SQLite 	| ⚠️ Malo več znanja | ✅ Hitro 				| ✅ Zelo varno 		| ✅ Dobro
+TinyDB 	| ✅ Enostavno 		| ✅ Dobro 				| ✅ Ok 				| ⚠️ Ne optimalno
+
+-začni z realno težavo aplikacije(teden4!)
+	-profilna stran uporabnika
+	-uporabnikov imenik v aplikaciji
+	-qr koda in generiranje spletne strani glede na mail
+	-možnost urejanja kontaktnih podatkov
+	-možnost skeniranja qr znotraj app-a
+	-iskanje uporabnika drugih uporabnikov glede na mail/ime,priimek
