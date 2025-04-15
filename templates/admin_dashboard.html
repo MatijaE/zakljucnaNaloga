@@ -1,18 +1,67 @@
 <!DOCTYPE html>
-<html lang="sl">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LiveCard - Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <title>Admin Dashboard</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #000;
+      color: #0ef;
+      padding: 20px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      color: white;
+    }
+    th, td {
+      border: 1px solid #0ef;
+      padding: 10px;
+      text-align: left;
+    }
+    a.delete-btn {
+      color: red;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    a.delete-btn:hover {
+      text-decoration: underline;
+    }
+    a.logout-btn {
+      color: #0ef;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a.logout-btn:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-    <h1>Dobrodošli na nadzorni plošči</h1>
-    {% if is_admin %}
-        <p>Prijavljeni ste kot administrator.</p>
-    {% else %}
-        <p>Prijavljeni ste kot običajen uporabnik.</p>
-    {% endif %}
-    <a href="{{ url_for('logout_user') }}">Odjava</a>    
+  <h1>Admin Dashboard</h1>
+  <p>Živ, {{ session['username'] }}!</p>
+
+  <h2>Registrirani uporabniki</h2>
+  <table>
+    <tr>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Action</th>
+    </tr>
+    {% for username, data in users.items() %}
+    <tr>
+      <td>{{ username }}</td>
+      <td>{{ data.email }}</td>
+      <td>
+        <a href="{{ url_for('delete_user', username=username) }}" class="delete-btn"
+           onclick="return confirm('Are you sure you want to delete {{ username }}?');">
+          Delete
+        </a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <p><a href="{{ url_for('logout') }}" class="logout-btn">Logout</a></p>
 </body>
 </html>
