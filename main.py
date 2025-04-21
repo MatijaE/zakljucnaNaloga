@@ -1,24 +1,15 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-import json
+from tinydb import TinyDB, Query
 import os
 
 app = Flask(__name__)
-app.secret_key = "ključčč"
+app.secret_key = "super_secret_key"
 
-USERS_FILE = "users.json"
+db = TinyDB("users.json")
+User = Query()
 
 ADMIN_USERNAME = "admin"
 ADMIN_PASSWORD = "admin"
-
-def load_users():
-    if not os.path.exists(USERS_FILE):
-        return {}
-    with open(USERS_FILE, "r") as file:
-        return json.load(file)
-
-def save_users(users):
-    with open(USERS_FILE, "w") as file:
-        json.dump(users, file)
 
 @app.route('/')
 def index():
@@ -29,15 +20,13 @@ def login():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        
+
         if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
             session["username"] = username
             session["is_admin"] = True
             return redirect(url_for("admin_dashboard"))
-        
-        users = load_users()
-        user = users.get(username)
 
+        user = db.get(User.username == username)
         if user and user["password"] == password:
             session["username"] = username
             session["is_admin"] = False
@@ -52,13 +41,11 @@ def register():
         username = request.form["username"]
         email = request.form["email"]
         password = request.form["password"]
-        users = load_users()
 
-        if username in users:
+        if db.get(User.username == username):
             return render_template("register.html", error="Username already exists")
-        
-        users[username] = {"email": email, "password": password}
-        save_users(users)
+
+        db.insert({"username": username, "email": email, "password": password})
         return redirect(url_for("login"))
     return render_template("register.html")
 
@@ -67,27 +54,22 @@ def admin_dashboard():
     if not session.get("is_admin"):
         return redirect(url_for("login"))
 
-    users = load_users()
-    return render_template("admin_dashboard.html", users=users)
+    users = db.all()
+    return render_template("admin_dashboard.html", users={u['username']: u for u in users})
 
 @app.route("/delete_user/<username>")
 def delete_user(username):
     if not session.get("is_admin"):
         return redirect(url_for("login"))
 
-    users = load_users()
-
-    if username in users:
-        users.pop(username)
-        save_users(users)
-    
+    db.remove(User.username == username)
     return redirect(url_for("admin_dashboard"))
 
 @app.route("/dashboard")
 def user_dashboard():
     if "username" not in session or session.get("is_admin"):
         return redirect(url_for("login"))
-    
+
     return render_template("user_dashboard.html", username=session["username"])
 
 @app.route("/logout")
