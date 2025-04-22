@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Uredi profil</title>
+  <style>
+    body { font-family: Arial; background: #000; color: #0ef; padding: 20px; }
+    input, textarea { display: block; margin-bottom: 10px; width: 300px; padding: 5px; }
+    label { margin-top: 10px; display: block; }
+    button { padding: 8px 16px; background: #0ef; border: none; color: black; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>Uredi svoj profil</h1>
+  <form method="POST">
+    <label>Profilna slika (URL):</label>
+    <input type="text" name="profile_picture" value="{{ user.profile_picture }}">
+
+    <label>Ime:</label>
+    <input type="text" name="first_name" value="{{ user.first_name }}">
+    
+    <label>Priimek:</label>
+    <input type="text" name="last_name" value="{{ user.last_name }}">
+    
+    <label>Email:</label>
+    <input type="email" name="email" value="{{ user.email }}">
+    
+    <label>Telefon:</label>
+    <input type="text" name="phone" value="{{ user.phone }}">
+    
+    <label>Bio:</label>
+    <textarea name="bio">{{ user.bio }}</textarea>
+
+    <label>Naslov:</label>
+    <input type="text" name="address" value="{{ user.address }}">
+
+    <label>Instagram (link):</label>
+    <input type="text" name="instagram" value="{{ user.instagram }}">
+
+    <label>X (Twitter) (link):</label>
+    <input type="text" name="x" value="{{ user.x }}">
+
+    <label>Facebook (link):</label>
+    <input type="text" name="facebook" value="{{ user.facebook }}">
+
+    <button type="submit">Shrani spremembe</button>
+  </form>
+
+  <a href="{{ url_for('profile') }}">Prekliči</a>
+</body>
+</html>

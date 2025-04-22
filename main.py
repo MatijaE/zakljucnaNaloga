@@ -3,7 +3,7 @@ from tinydb import TinyDB, Query
 import os
 
 app = Flask(__name__)
-app.secret_key = "super_secret_key"
+app.secret_key = "123"
 
 db = TinyDB("users.json")
 User = Query()
@@ -76,6 +76,45 @@ def user_dashboard():
 def logout():
     session.clear()
     return redirect(url_for("login"))
+
+#za profil
+@app.route("/profile")
+def profile():
+    if "username" not in session:
+        return redirect(url_for("login"))
+
+    user = db.get(User.username == session["username"])
+    
+    #generiranje websita glede na email
+    if user and "email" in user:
+        email_prefix = user["email"].split("@")[0]
+        user["website"] = f"https://livecard.app/{email_prefix}"
+
+    return render_template("profile.html", user=user)
+
+@app.route("/edit_profile", methods=["GET", "POST"])
+def edit_profile():
+    if "username" not in session:
+        return redirect(url_for("login"))
+
+    if request.method == "POST":
+        new_data = {
+            "first_name": request.form["first_name"],
+            "last_name": request.form["last_name"],
+            "email": request.form["email"],
+            "phone": request.form["phone"],
+            "bio": request.form["bio"],
+            "address": request.form["address"],
+            "profile_picture": request.form["profile_picture"],
+            "instagram": request.form["instagram"],
+            "x": request.form["x"],
+            "facebook": request.form["facebook"]
+        }
+        db.update(new_data, User.username == session["username"])
+        return redirect(url_for("profile"))
+
+    user = db.get(User.username == session["username"])
+    return render_template("edit_profile.html", user=user)
 
 if __name__ == "__main__":
     app.run(debug=True)

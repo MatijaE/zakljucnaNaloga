@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Moj profil</title>
+  <style>
+    body { font-family: Arial; background: #000; color: #0ef; padding: 20px; }
+    .info { margin-bottom: 10px; }
+    a { color: #0ef; margin-top: 20px; display: inline-block; }
+    img { max-width: 150px; border-radius: 50%; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Moj profil</h1>
+
+  {% if user.profile_picture %}
+    <img src="{{ user.profile_picture }}" alt="Profilna slika">
+  {% endif %}
+
+  <div class="info"><strong>Ime:</strong> {{ user.first_name }}</div>
+  <div class="info"><strong>Priimek:</strong> {{ user.last_name }}</div>
+  <div class="info"><strong>Email:</strong> {{ user.email }}</div>
+  <div class="info"><strong>Telefon:</strong> {{ user.phone }}</div>
+  <div class="info"><strong>Bio:</strong> {{ user.bio }}</div>
+  <div class="info"><strong>Naslov:</strong> {{ user.address }}</div>
+  <div class="info"><strong>Spletna stran:</strong> <a href="{{ user.website }}" target="_blank">{{ user.website }}</a></div>
+
+  <div class="info">
+    <strong>Družabna omrežja:</strong><br>
+    {% if user.instagram %}<a href="{{ user.instagram }}" target="_blank">Instagram</a><br>{% endif %}
+    {% if user.x %}<a href="{{ user.x }}" target="_blank">X</a><br>{% endif %}
+    {% if user.facebook %}<a href="{{ user.facebook }}" target="_blank">Facebook</a><br>{% endif %}
+  </div>
+
+  <a href="{{ url_for('edit_profile') }}">Uredi profil</a>
+  <a href="{{ url_for('user_dashboard') }}">Nazaj na dashboard</a>
+</body>
+</html>

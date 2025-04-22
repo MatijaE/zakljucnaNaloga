@@ -1,0 +1,15 @@
+nadaljuj!!!!!!:
+naslov: lahko izbereš samo regijo in ko klikneš na naslov se ti odpre zemljevid in označen del sveta... (gorenjska) ali pa točno določen dom...
+qr: generiranje qr kode in shranjevanje v mapo
+družabna: ko klikneš na ikono od omrežja se odpre tvoj profil- ali z sliko ali z fontawesome- https://fontawesome.com/search
+
+vsak uporabnik lahko z mailom poišče na spletni strani drugega uporabnika/ ali pa ga povabi preko maila (za povabilo se mail kreira sam!- 
+ko nekoga povabiš v aplikacijo in mu pošlješ mail/sporočilo dobiš možnost dodajanja profilne slike!)
+
+ko nekoga poiščeš ga lahko doda v svoj imenik in on to vidi - razen če imaš premium (lahko v nastavitvah spremeniš da nihče ne vidi tvoje aktivnosti...)
+ko pa nekoga preko aplikacije skeniraš njegov qr-kodo pa se ta avtomatsko kontakt shrani v tvoj imenik
+
+na koncu ko bo vse:
+popravek pri adminu- vidni vsi podatki!
+
+--->nastavitve profila...
