@@ -3,7 +3,7 @@ from tinydb import TinyDB, Query
 import os
 
 app = Flask(__name__)
-app.secret_key = "123"
+app.secret_key = "super_secret_key"
 
 db = TinyDB("users.json")
 User = Query()
@@ -77,6 +77,13 @@ def logout():
     session.clear()
     return redirect(url_for("login"))
 
+#svoja funkcija za generiranje povezave
+def generate_website(user):
+    if "email" in user and user["email"]:
+        email_prefix = user["email"].split("@")[0]
+        return f"https://livecard.app/{email_prefix}"
+    return None
+
 #za profil
 @app.route("/profile")
 def profile():
@@ -84,11 +91,8 @@ def profile():
         return redirect(url_for("login"))
 
     user = db.get(User.username == session["username"])
-    
-    #generiranje websita glede na email
-    if user and "email" in user:
-        email_prefix = user["email"].split("@")[0]
-        user["website"] = f"https://livecard.app/{email_prefix}"
+    if user:
+        user["website"] = generate_website(user)
 
     return render_template("profile.html", user=user)
 
@@ -104,17 +108,29 @@ def edit_profile():
             "email": request.form["email"],
             "phone": request.form["phone"],
             "bio": request.form["bio"],
-            "address": request.form["address"],
-            "profile_picture": request.form["profile_picture"],
-            "instagram": request.form["instagram"],
-            "x": request.form["x"],
-            "facebook": request.form["facebook"]
+            "address": request.form.get("address"),
+            "profile_picture": request.form.get("profile_picture"),
+            "instagram": request.form.get("instagram"),
+            "x": request.form.get("x"),
+            "facebook": request.form.get("facebook")
         }
         db.update(new_data, User.username == session["username"])
         return redirect(url_for("profile"))
 
     user = db.get(User.username == session["username"])
     return render_template("edit_profile.html", user=user)
+
+#imenik - directory
+@app.route("/directory")
+def directory():
+    if "username" not in session:
+        return redirect(url_for("login"))
+
+    users = db.all()
+    for user in users:
+        user["website"] = generate_website(user)
+
+    return render_template("directory.html", users=users)
 
 if __name__ == "__main__":
     app.run(debug=True)

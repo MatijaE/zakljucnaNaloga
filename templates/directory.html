@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Imenik uporabnikov</title>
+  <style>
+    body { font-family: Arial; background: #000; color: #0ef; padding: 20px; }
+    table { border-collapse: collapse; width: 100%; color: white; }
+    th, td { border: 1px solid #0ef; padding: 10px; vertical-align: top; text-align: center; }
+    img.profile-pic { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; }
+    .social-links div { margin: 4px 0; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <h1>Imenik uporabnikov</h1>
+  <table>
+    <tr>
+      <th>Slika</th>
+      <th>Ime</th>
+      <th>Priimek</th>
+      <th>Email</th>
+      <th>Telefon</th>
+      <th>Opis</th>
+      <th>Naslov</th>
+      <th>Spletna stran</th>
+      <th>Družabna omrežja</th>
+    </tr>
+    {% for user in users %}
+    <tr>
+      <td>
+        {% if user.profile_picture %}
+          <img src="{{ user.profile_picture }}" alt="Profilna slika" class="profile-pic">
+        {% else %}
+          brez slike
+        {% endif %}
+      </td>
+      <td>{{ user.first_name }}</td>
+      <td>{{ user.last_name }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.phone }}</td>
+      <td>{{ user.bio }}</td>
+      <td>{{ user.address }}</td>
+      <td>
+        {% if user.website %}
+          <a href="{{ user.website }}" target="_blank">Moja website</a>
+        {% else %}
+          brez spletne strani
+        {% endif %}
+      </td>
+      <td class="social-links">
+        {% if user.instagram %}
+          <div><a href="{{ user.instagram }}" target="_blank">Instagram</a></div>
+        {% endif %}
+        {% if user.x %}
+          <div><a href="{{ user.x }}" target="_blank">X</a></div>
+        {% endif %}
+        {% if user.facebook %}
+          <div><a href="{{ user.facebook }}" target="_blank">Facebook</a></div>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+  <p><a href="{{ url_for('user_dashboard') }}" style="color:#0ef;">Nazaj</a></p>
+</body>
+</html>

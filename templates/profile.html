@@ -14,6 +14,8 @@
 
   {% if user.profile_picture %}
     <img src="{{ user.profile_picture }}" alt="Profilna slika">
+  {% else %}
+    <p>Profilna slika ni nastavljena</p>
   {% endif %}
 
   <div class="info"><strong>Ime:</strong> {{ user.first_name }}</div>
@@ -22,7 +24,14 @@
   <div class="info"><strong>Telefon:</strong> {{ user.phone }}</div>
   <div class="info"><strong>Bio:</strong> {{ user.bio }}</div>
   <div class="info"><strong>Naslov:</strong> {{ user.address }}</div>
-  <div class="info"><strong>Spletna stran:</strong> <a href="{{ user.website }}" target="_blank">{{ user.website }}</a></div>
+
+  <div class="info"><strong>Spletna stran:</strong> 
+    {% if user.website %}
+      <a href="{{ user.website }}" target="_blank">{{ user.website }}</a>
+    {% else %}
+      brez spletne strani
+    {% endif %}
+  </div>
 
   <div class="info">
     <strong>Družabna omrežja:</strong><br>
