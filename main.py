@@ -103,20 +103,30 @@ def edit_profile():
 
     if request.method == "POST":
         new_data = {
-            "first_name": request.form["first_name"],
-            "last_name": request.form["last_name"],
-            "email": request.form["email"],
-            "phone": request.form["phone"],
-            "bio": request.form["bio"],
+            "first_name": request.form.get("first_name"),
+            "last_name": request.form.get("last_name"),
+            "email": request.form.get("email"),
+            "phone": request.form.get("phone"),
+            "bio": request.form.get("bio"),
             "address": request.form.get("address"),
             "profile_picture": request.form.get("profile_picture"),
+            "website": request.form.get("website"),
             "instagram": request.form.get("instagram"),
             "x": request.form.get("x"),
-            "facebook": request.form.get("facebook")
+            "facebook": request.form.get("facebook"),
+            "whatsapp": request.form.get("whatsapp"),
+            "tiktok": request.form.get("tiktok"),
+            "snapchat": request.form.get("snapchat"),
+            "youtube": request.form.get("youtube"),
+            "linkedin": request.form.get("linkedin"),
+            "discord": request.form.get("discord")
         }
+
+        #shrani
         db.update(new_data, User.username == session["username"])
         return redirect(url_for("profile"))
 
+    #če je GETzahteva naloži uporabnika
     user = db.get(User.username == session["username"])
     return render_template("edit_profile.html", user=user)
 

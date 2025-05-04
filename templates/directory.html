@@ -2,12 +2,21 @@
 <html>
 <head>
   <title>Imenik uporabnikov</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body { font-family: Arial; background: #000; color: #0ef; padding: 20px; }
     table { border-collapse: collapse; width: 100%; color: white; }
     th, td { border: 1px solid #0ef; padding: 10px; vertical-align: top; text-align: center; }
     img.profile-pic { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; }
-    .social-links div { margin: 4px 0; font-size: 14px; }
+    .social-icons a {
+      margin: 0 5px;
+      font-size: 20px;
+      color: #0ef;
+      text-decoration: none;
+    }
+    .social-icons a:hover {
+      color: white;
+    }
   </style>
 </head>
 <body>
@@ -21,7 +30,6 @@
       <th>Telefon</th>
       <th>Opis</th>
       <th>Naslov</th>
-      <th>Spletna stran</th>
       <th>Družabna omrežja</th>
     </tr>
     {% for user in users %}
@@ -40,22 +48,17 @@
       <td>{{ user.bio }}</td>
       <td>{{ user.address }}</td>
       <td>
-        {% if user.website %}
-          <a href="{{ user.website }}" target="_blank">Moja website</a>
-        {% else %}
-          brez spletne strani
-        {% endif %}
-      </td>
-      <td class="social-links">
-        {% if user.instagram %}
-          <div><a href="{{ user.instagram }}" target="_blank">Instagram</a></div>
-        {% endif %}
-        {% if user.x %}
-          <div><a href="{{ user.x }}" target="_blank">X</a></div>
-        {% endif %}
-        {% if user.facebook %}
-          <div><a href="{{ user.facebook }}" target="_blank">Facebook</a></div>
-        {% endif %}
+        <div class="social-icons">
+          {% if user.instagram %}<a href="{{ user.instagram }}" target="_blank"><i class="fab fa-instagram"></i></a>{% endif %}
+          {% if user.x %}<a href="{{ user.x }}" target="_blank"><i class="fab fa-x-twitter"></i></a>{% endif %}
+          {% if user.facebook %}<a href="{{ user.facebook }}" target="_blank"><i class="fab fa-facebook"></i></a>{% endif %}
+          {% if user.whatsapp %}<a href="{{ user.whatsapp }}" target="_blank"><i class="fab fa-whatsapp"></i></a>{% endif %}
+          {% if user.tiktok %}<a href="{{ user.tiktok }}" target="_blank"><i class="fab fa-tiktok"></i></a>{% endif %}
+          {% if user.snapchat %}<a href="{{ user.snapchat }}" target="_blank"><i class="fab fa-snapchat"></i></a>{% endif %}
+          {% if user.youtube %}<a href="{{ user.youtube }}" target="_blank"><i class="fab fa-youtube"></i></a>{% endif %}
+          {% if user.linkedin %}<a href="{{ user.linkedin }}" target="_blank"><i class="fab fa-linkedin"></i></a>{% endif %}
+          {% if user.discord %}<a href="{{ user.discord }}" target="_blank"><i class="fab fa-discord"></i></a>{% endif %}
+        </div>
       </td>
     </tr>
     {% endfor %}

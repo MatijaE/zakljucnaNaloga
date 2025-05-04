@@ -2,49 +2,71 @@
 <html>
 <head>
   <title>Uredi profil</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body { font-family: Arial; background: #000; color: #0ef; padding: 20px; }
-    input, textarea { display: block; margin-bottom: 10px; width: 300px; padding: 5px; }
-    label { margin-top: 10px; display: block; }
-    button { padding: 8px 16px; background: #0ef; border: none; color: black; cursor: pointer; }
+    label { display: block; margin-top: 10px; }
+    input, textarea { width: 100%; padding: 8px; background: #111; color: #0ef; border: 1px solid #0ef; }
+    button { margin-top: 20px; padding: 10px 20px; background: #0ef; color: black; border: none; cursor: pointer; }
+    button:hover { background: white; color: #000; }
   </style>
 </head>
 <body>
-  <h1>Uredi svoj profil</h1>
+  <h1>Uredi profil</h1>
   <form method="POST">
-    <label>Profilna slika (URL):</label>
-    <input type="text" name="profile_picture" value="{{ user.profile_picture }}">
-
     <label>Ime:</label>
     <input type="text" name="first_name" value="{{ user.first_name }}">
-    
+
     <label>Priimek:</label>
     <input type="text" name="last_name" value="{{ user.last_name }}">
-    
+
     <label>Email:</label>
     <input type="email" name="email" value="{{ user.email }}">
-    
+
     <label>Telefon:</label>
     <input type="text" name="phone" value="{{ user.phone }}">
-    
+
     <label>Bio:</label>
     <textarea name="bio">{{ user.bio }}</textarea>
 
     <label>Naslov:</label>
     <input type="text" name="address" value="{{ user.address }}">
 
-    <label>Instagram (link):</label>
+    <label>Profilna slika (URL):</label>
+    <input type="text" name="profile_picture" value="{{ user.profile_picture }}">
+
+    <label>Spletna stran:</label>
+    <input type="text" name="website" value="{{ user.website }}">
+
+    <label>Instagram:</label>
     <input type="text" name="instagram" value="{{ user.instagram }}">
 
-    <label>X (Twitter) (link):</label>
+    <label>X (Twitter):</label>
     <input type="text" name="x" value="{{ user.x }}">
 
-    <label>Facebook (link):</label>
+    <label>Facebook:</label>
     <input type="text" name="facebook" value="{{ user.facebook }}">
 
-    <button type="submit">Shrani spremembe</button>
-  </form>
+    <label>WhatsApp:</label>
+    <input type="text" name="whatsapp" value="{{ user.whatsapp }}">
 
-  <a href="{{ url_for('profile') }}">Prekliči</a>
+    <label>TikTok:</label>
+    <input type="text" name="tiktok" value="{{ user.tiktok }}">
+
+    <label>Snapchat:</label>
+    <input type="text" name="snapchat" value="{{ user.snapchat }}">
+
+    <label>YouTube:</label>
+    <input type="text" name="youtube" value="{{ user.youtube }}">
+
+    <label>LinkedIn:</label>
+    <input type="text" name="linkedin" value="{{ user.linkedin }}">
+
+    <label>Discord:</label>
+    <input type="text" name="discord" value="{{ user.discord }}">
+
+    <button type="submit">Shrani</button>
+  </form>
+  <a href="{{ url_for('profile') }}">Nazaj</a>
 </body>
 </html>

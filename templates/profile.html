@@ -2,11 +2,21 @@
 <html>
 <head>
   <title>Moj profil</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body { font-family: Arial; background: #000; color: #0ef; padding: 20px; }
     .info { margin-bottom: 10px; }
-    a { color: #0ef; margin-top: 20px; display: inline-block; }
+    a { color: #0ef; margin-top: 20px; display: inline-block; text-decoration: none; }
     img { max-width: 150px; border-radius: 50%; margin-bottom: 10px; }
+    .social-icons a {
+      margin-right: 10px;
+      font-size: 24px;
+      color: #0ef;
+      text-decoration: none;
+    }
+    .social-icons a:hover {
+      color: white;
+    }
   </style>
 </head>
 <body>
@@ -14,8 +24,6 @@
 
   {% if user.profile_picture %}
     <img src="{{ user.profile_picture }}" alt="Profilna slika">
-  {% else %}
-    <p>Profilna slika ni nastavljena</p>
   {% endif %}
 
   <div class="info"><strong>Ime:</strong> {{ user.first_name }}</div>
@@ -24,20 +32,21 @@
   <div class="info"><strong>Telefon:</strong> {{ user.phone }}</div>
   <div class="info"><strong>Bio:</strong> {{ user.bio }}</div>
   <div class="info"><strong>Naslov:</strong> {{ user.address }}</div>
-
-  <div class="info"><strong>Spletna stran:</strong> 
-    {% if user.website %}
-      <a href="{{ user.website }}" target="_blank">{{ user.website }}</a>
-    {% else %}
-      brez spletne strani
-    {% endif %}
-  </div>
+  <div class="info"><strong>Spletna stran:</strong> <a href="{{ user.website }}" target="_blank">{{ user.website }}</a></div>
 
   <div class="info">
-    <strong>Družabna omrežja:</strong><br>
-    {% if user.instagram %}<a href="{{ user.instagram }}" target="_blank">Instagram</a><br>{% endif %}
-    {% if user.x %}<a href="{{ user.x }}" target="_blank">X</a><br>{% endif %}
-    {% if user.facebook %}<a href="{{ user.facebook }}" target="_blank">Facebook</a><br>{% endif %}
+    <strong>Družabna omrežja:</strong>
+    <div class="social-icons">
+      {% if user.instagram %}<a href="{{ user.instagram }}" target="_blank"><i class="fab fa-instagram"></i></a>{% endif %}
+      {% if user.x %}<a href="{{ user.x }}" target="_blank"><i class="fab fa-x-twitter"></i></a>{% endif %}
+      {% if user.facebook %}<a href="{{ user.facebook }}" target="_blank"><i class="fab fa-facebook"></i></a>{% endif %}
+      {% if user.whatsapp %}<a href="{{ user.whatsapp }}" target="_blank"><i class="fab fa-whatsapp"></i></a>{% endif %}
+      {% if user.tiktok %}<a href="{{ user.tiktok }}" target="_blank"><i class="fab fa-tiktok"></i></a>{% endif %}
+      {% if user.snapchat %}<a href="{{ user.snapchat }}" target="_blank"><i class="fab fa-snapchat"></i></a>{% endif %}
+      {% if user.youtube %}<a href="{{ user.youtube }}" target="_blank"><i class="fab fa-youtube"></i></a>{% endif %}
+      {% if user.linkedin %}<a href="{{ user.linkedin }}" target="_blank"><i class="fab fa-linkedin"></i></a>{% endif %}
+      {% if user.discord %}<a href="{{ user.discord }}" target="_blank"><i class="fab fa-discord"></i></a>{% endif %}
+    </div>
   </div>
 
   <a href="{{ url_for('edit_profile') }}">Uredi profil</a>

@@ -2,14 +2,15 @@
 spletno stran(saj se na tej aplikacija ta spletna sama generira glede na tvoj mail- da tako pridobiš lastno spletno stran-vizitko), 
 družabna omrežja (instagram, x, facebook- to so ikone teh aplikacij in ko klikneš se odpre profil na appu!!)
 
-nadaljuj!!!!!!:
-slika: namesto url-ja - preko upload obrazca- nalaganje profilne slike, možnost izbrisa in možnost zamenjave
 družabna: dodaj klikljive ikone za vsako omrežje
 družabna: ko klikneš na ikono od omrežja se odpre tvoj profil- ali z sliko ali z fontawesome- https://fontawesome.com/search
 
+nadaljuj!!!!!!:
+qr: generiranje qr kode in shranjevanje v mapo
+
 naslov: lahko izbereš samo regijo in ko klikneš na naslov se ti odpre zemljevid in označen del sveta... (gorenjska) ali pa točno določen dom...
 
-qr: generiranje qr kode in shranjevanje v mapo
+slika: namesto url-ja - preko upload obrazca- nalaganje profilne slike, možnost izbrisa in možnost zamenjave
 
 vsak uporabnik lahko z mailom poišče na spletni strani drugega uporabnika/ ali pa ga povabi preko maila (za povabilo se mail kreira sam!- 
 ko nekoga povabiš v aplikacijo in mu pošlješ mail/sporočilo dobiš možnost dodajanja profilne slike!)
