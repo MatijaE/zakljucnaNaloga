@@ -1,11 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from tinydb import TinyDB, Query
 import os
+import secrets
+import bcrypt  #za hashiranje gesel da so varni
 
 app = Flask(__name__)
-app.secret_key = "super_secret_key"
+app.secret_key = secrets.token_hex(16)  #za varnost seje
 
-db = TinyDB("users.json")
+db = TinyDB("users.json")  #tukaj shranjujem uporabnike
 User = Query()
 
 ADMIN_USERNAME = "admin"
@@ -21,18 +23,20 @@ def login():
         username = request.form["username"]
         password = request.form["password"]
 
-        if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
+        if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:  #če je admin
             session["username"] = username
-            session["is_admin"] = True
+            session["is_admin"] = True  #nastavim da je admin
             return redirect(url_for("admin_dashboard"))
 
-        user = db.get(User.username == username)
-        if user and user["password"] == password:
+        user = db.get(User.username == username)  #poišem uporabnika v bazi
+
+        if user and bcrypt.checkpw(password.encode("utf-8"), user["password"].encode("utf-8")):  #preverim geslo
             session["username"] = username
-            session["is_admin"] = False
+            session["is_admin"] = False  #nastavm da je navaden uporabnik
             return redirect(url_for("user_dashboard"))
         else:
-            return render_template("login.html", error="Invalid username or password")
+            return render_template("login.html", error="Invalid username or password")  #če so napačni podatki
+
     return render_template("login.html")
 
 @app.route('/register', methods=["GET", "POST"])
@@ -42,63 +46,67 @@ def register():
         email = request.form["email"]
         password = request.form["password"]
 
-        if db.get(User.username == username):
-            return render_template("register.html", error="Username already exists")
+        if db.get(User.username == username):  #če že obstaja uporabnik
+            return render_template("register.html", error="Username already exists")  #obvestim uporabnika
 
-        db.insert({"username": username, "email": email, "password": password})
-        return redirect(url_for("login"))
+        hashed_pw = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt())  #hashiram geslo
+
+        db.insert({
+            "username": username,
+            "email": email,
+            "password": hashed_pw.decode("utf-8")  #bcrypt hash more biti string
+        })
+        return redirect(url_for("login"))  #po registraciji gre nazaj na prijavo
     return render_template("register.html")
 
 @app.route("/admin")
 def admin_dashboard():
-    if not session.get("is_admin"):
+    if not session.get("is_admin"):  #če ni admin
         return redirect(url_for("login"))
 
-    users = db.all()
-    return render_template("admin_dashboard.html", users={u['username']: u for u in users})
+    users = db.all()  #dobim vse uporabnike
+    return render_template("admin_dashboard.html", users={u['username']: u for u in users})  #prikažem uporabnike
 
 @app.route("/delete_user/<username>")
 def delete_user(username):
-    if not session.get("is_admin"):
+    if not session.get("is_admin"):  #če ni admin
         return redirect(url_for("login"))
 
-    db.remove(User.username == username)
-    return redirect(url_for("admin_dashboard"))
+    db.remove(User.username == username)  #brišem uporabnika
+    return redirect(url_for("admin_dashboard"))  #nazaj na admin stran
 
 @app.route("/dashboard")
 def user_dashboard():
-    if "username" not in session or session.get("is_admin"):
+    if "username" not in session or session.get("is_admin"):  #če ni loginan ali je admin
         return redirect(url_for("login"))
 
-    return render_template("user_dashboard.html", username=session["username"])
+    return render_template("user_dashboard.html", username=session["username"])  #prikaže uporabnikov dashboard
 
 @app.route("/logout")
 def logout():
-    session.clear()
-    return redirect(url_for("login"))
+    session.clear()  #zbriše sejo ob odjavi
+    return redirect(url_for("login"))  #po odjavi gre nazaj na prijavo
 
-#svoja funkcija za generiranje povezave
 def generate_website(user):
-    if "email" in user and user["email"]:
-        email_prefix = user["email"].split("@")[0]
+    if "email" in user and user["email"]:  #če ima uporabnik email
+        email_prefix = user["email"].split("@")[0]  #generiram unikatno povezavo
         return f"https://livecard.app/{email_prefix}"
-    return None
+    return None  #če ni emaila vrnem None
 
-#za profil
 @app.route("/profile")
 def profile():
-    if "username" not in session:
+    if "username" not in session:  #če ni prijavljen
         return redirect(url_for("login"))
 
-    user = db.get(User.username == session["username"])
+    user = db.get(User.username == session["username"])  #poišem uporabnika v bazi
     if user:
-        user["website"] = generate_website(user)
+        user["website"] = generate_website(user)  #dodam unikatno povezavo
 
-    return render_template("profile.html", user=user)
+    return render_template("profile.html", user=user)  #prikažem profil
 
 @app.route("/edit_profile", methods=["GET", "POST"])
 def edit_profile():
-    if "username" not in session:
+    if "username" not in session:  #če ni prijavljen
         return redirect(url_for("login"))
 
     if request.method == "POST":
@@ -122,25 +130,22 @@ def edit_profile():
             "discord": request.form.get("discord")
         }
 
-        #shrani
-        db.update(new_data, User.username == session["username"])
-        return redirect(url_for("profile"))
+        db.update(new_data, User.username == session["username"])  #posodobim podatke uporabnika
+        return redirect(url_for("profile"))  #nazaj na profil
 
-    #če je GETzahteva naloži uporabnika
-    user = db.get(User.username == session["username"])
-    return render_template("edit_profile.html", user=user)
+    user = db.get(User.username == session["username"])  #naložim obstoječe podatke uporabnika
+    return render_template("edit_profile.html", user=user)  #prikažem obrazec za urejanje
 
-#imenik - directory
 @app.route("/directory")
 def directory():
-    if "username" not in session:
+    if "username" not in session:  #če ni prijavljen
         return redirect(url_for("login"))
 
-    users = db.all()
+    users = db.all()  #dobim vse uporabnike
     for user in users:
-        user["website"] = generate_website(user)
+        user["website"] = generate_website(user)  #dodam unikatno povezavo vsakemu uporabniku
 
-    return render_template("directory.html", users=users)
+    return render_template("directory.html", users=users)  #prikažem seznam uporabnikov
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True)  #zagon v debug načinu

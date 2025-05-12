@@ -6,6 +6,8 @@ družabna: dodaj klikljive ikone za vsako omrežje
 družabna: ko klikneš na ikono od omrežja se odpre tvoj profil- ali z sliko ali z fontawesome- https://fontawesome.com/search
 
 qr: generiranje qr kode in shranjevanje v mapo
+--dodaj komentarje za boljšo vednost ko se pokaže ERROR na neki podčrtani vrstici in maš poj zravn koment in veš kje si zaje*u!!!
+obvezno hashiranje gesel! - bcrypt
 
 nadaljuj!!!!!!:
 https://livecard.app/...    ->  http://localhost:5000/view/...
@@ -13,8 +15,6 @@ https://livecard.app/...    ->  http://localhost:5000/view/...
    da posodobim funkcijo generate_website() za localhost...
    potem dodam novo pot(route) - k ta prkazuje javne profile
    public_profile - za obiskovalce ne /profile zto da ni potrebna prijava!! ampak direktno do profila!
-
-obvezno hashiranje gesel! - bcrypt
 
 naslov: lahko izbereš samo regijo in ko klikneš na naslov se ti odpre zemljevid in označen del sveta... (gorenjska) ali pa točno določen dom...
 
