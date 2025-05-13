@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from tinydb import TinyDB, Query
+from tinyrecord import transaction  #za varno uporabo baze če več uporabnikov hkrati uporablja aplikacijo
 import os
 import secrets
 import bcrypt  #za hashiranje gesel da so varni
@@ -51,11 +52,13 @@ def register():
 
         hashed_pw = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt())  #hashiram geslo
 
-        db.insert({
-            "username": username,
-            "email": email,
-            "password": hashed_pw.decode("utf-8")  #bcrypt hash more biti string
-        })
+        with transaction(db) as tr:  #dodam uporabnika v bazo varno če več ljudi hkrati registrira
+            tr.insert({
+                "username": username,
+                "email": email,
+                "password": hashed_pw.decode("utf-8")  #bcrypt hash more biti string
+            })
+
         return redirect(url_for("login"))  #po registraciji gre nazaj na prijavo
     return render_template("register.html")
 
@@ -72,7 +75,9 @@ def delete_user(username):
     if not session.get("is_admin"):  #če ni admin
         return redirect(url_for("login"))
 
-    db.remove(User.username == username)  #brišem uporabnika
+    with transaction(db) as tr:  #uporabim transakcijo da se uporabnik varno izbriše
+        tr.remove(User.username == username)
+
     return redirect(url_for("admin_dashboard"))  #nazaj na admin stran
 
 @app.route("/dashboard")
@@ -130,7 +135,9 @@ def edit_profile():
             "discord": request.form.get("discord")
         }
 
-        db.update(new_data, User.username == session["username"])  #posodobim podatke uporabnika
+        with transaction(db) as tr:  #posodobim podatke uporabnika varno če več ljudi ureja profil
+            tr.update(new_data, User.username == session["username"])
+
         return redirect(url_for("profile"))  #nazaj na profil
 
     user = db.get(User.username == session["username"])  #naložim obstoječe podatke uporabnika

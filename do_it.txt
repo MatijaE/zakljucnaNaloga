@@ -9,6 +9,8 @@ qr: generiranje qr kode in shranjevanje v mapo
 --dodaj komentarje za boljšo vednost ko se pokaže ERROR na neki podčrtani vrstici in maš poj zravn koment in veš kje si zaje*u!!!
 obvezno hashiranje gesel! - bcrypt
 
+dodaj za tinydb da deluje baza varno z več uporabniki naenkrat - https://github.com/eugene-eeo/tinyrecord
+
 nadaljuj!!!!!!:
 https://livecard.app/...    ->  http://localhost:5000/view/...
 
