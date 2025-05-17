@@ -1,38 +1,39 @@
-->v profilu: profilna slika, ime in priimek, bio (naziv dela... #...), mail, telefonsko, naslov, 
+💪🏼💪🏼💪🏼💪🏼💪🏼💪🏼💪🏼💪🏼nadaljuj!!!!!!:
+❗https://livecard.app/...    ->  http://localhost:5000/view/...
+
+   ⭕️da posodobim funkcijo generate_website() za localhost...
+   ⭕️potem dodam novo pot(route) - k ta prkazuje javne profile
+   ⭕️public_profile - za obiskovalce ne /profile zto da ni potrebna prijava!! ampak direktno do profila!
+
+❗validacija podatkov na strani strežnika: v app-u preveriš ali so vnešeni podatki pravilni 
+      npr: URL-ji za družbena omrežja, profilna slika in številka za telefon ... dodam v /edit_profile v POST delu
+
+❓naslov: lahko izbereš samo regijo in ko klikneš na naslov se ti odpre zemljevid in označen del sveta... (gorenjska) ali pa točno določen dom...
+
+❓slika: namesto url-ja - preko upload obrazca- nalaganje profilne slike, možnost izbrisa in možnost zamenjave
+
+❗na koncu ko bo vse:  popravek pri adminu- vidni pomembni podatki o vsakem uporabniku!
+❗--->nastavitve profila... da klikneš tisto ikono... in maš tm več možnosti za popravke
+❗Gunicorn - WSGI strežnik (brez debug načina):   pip install gunicorn  |  gunicorn main:app
+
+❓dodajanje !search bar!:
+   -vsak uporabnik lahko z mailom poišče na spletni strani drugega uporabnika/ ali pa ga povabi preko maila (za povabilo se mail kreira sam!- 
+      ko nekoga povabiš v aplikacijo in mu pošlješ mail/sporočilo dobiš možnost dodajanja profilne slike!)
+   -ko nekoga poiščeš ga lahko doda v svoj imenik in on to vidi - razen če imaš premium (lahko v nastavitvah spremeniš da nihče ne vidi tvoje aktivnosti...)
+      ko pa nekoga preko aplikacije skeniraš njegov qr-kodo pa se ta avtomatsko kontakt shrani v tvoj imenik
+
+DONE ✅
+
+✅->v profilu: profilna slika, ime in priimek, bio (naziv dela... #...), mail, telefonsko, naslov, 
 spletno stran(saj se na tej aplikacija ta spletna sama generira glede na tvoj mail- da tako pridobiš lastno spletno stran-vizitko), 
 družabna omrežja (instagram, x, facebook- to so ikone teh aplikacij in ko klikneš se odpre profil na appu!!)
 
-družabna: dodaj klikljive ikone za vsako omrežje
-družabna: ko klikneš na ikono od omrežja se odpre tvoj profil- ali z sliko ali z fontawesome- https://fontawesome.com/search
+✅družabna: dodaj klikljive ikone za vsako omrežje
+✅družabna: ko klikneš na ikono od omrežja se odpre tvoj profil- ali z sliko ali z fontawesome- https://fontawesome.com/search
 
-qr: generiranje qr kode in shranjevanje v mapo
---dodaj komentarje za boljšo vednost ko se pokaže ERROR na neki podčrtani vrstici in maš poj zravn koment in veš kje si zaje*u!!!
-obvezno hashiranje gesel! - bcrypt
+✅qr: generiranje qr kode in shranjevanje v mapo
+✅--dodaj komentarje za boljšo vednost ko se pokaže ERROR na neki podčrtani vrstici in maš poj zravn koment in veš kje si zaje*u!!!
+✅obvezno hashiranje gesel! - bcrypt
 
-dodaj za tinydb da deluje baza varno z več uporabniki naenkrat - https://github.com/eugene-eeo/tinyrecord
-
-nadaljuj!!!!!!:
-https://livecard.app/...    ->  http://localhost:5000/view/...
-
-   da posodobim funkcijo generate_website() za localhost...
-   potem dodam novo pot(route) - k ta prkazuje javne profile
-   public_profile - za obiskovalce ne /profile zto da ni potrebna prijava!! ampak direktno do profila!
-
-naslov: lahko izbereš samo regijo in ko klikneš na naslov se ti odpre zemljevid in označen del sveta... (gorenjska) ali pa točno določen dom...
-
-slika: namesto url-ja - preko upload obrazca- nalaganje profilne slike, možnost izbrisa in možnost zamenjave
-
-dodajanje !search bar!:
--vsak uporabnik lahko z mailom poišče na spletni strani drugega uporabnika/ ali pa ga povabi preko maila (za povabilo se mail kreira sam!- 
-ko nekoga povabiš v aplikacijo in mu pošlješ mail/sporočilo dobiš možnost dodajanja profilne slike!)
--ko nekoga poiščeš ga lahko doda v svoj imenik in on to vidi - razen če imaš premium (lahko v nastavitvah spremeniš da nihče ne vidi tvoje aktivnosti...)
-ko pa nekoga preko aplikacije skeniraš njegov qr-kodo pa se ta avtomatsko kontakt shrani v tvoj imenik
-
-na koncu ko bo vse:
-popravek pri adminu- vidni vsi podatki o vsakem uporabniku!
-
---->nastavitve profila...
-
-Gunicorn - WSGI strežnik (brez debug načina):
-pip install gunicorn
-gunicorn main:app
+✅*dodaj za tinydb da deluje baza varno z več uporabniki naenkrat - https://github.com/eugene-eeo/tinyrecord
+✅*reset button

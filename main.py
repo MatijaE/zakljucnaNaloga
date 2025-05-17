@@ -80,6 +80,19 @@ def delete_user(username):
 
     return redirect(url_for("admin_dashboard"))  #nazaj na admin stran
 
+@app.route("/reset_password/<username>")
+def reset_password(username):
+    if not session.get("is_admin"):  #če ni admin
+        return redirect(url_for("login"))
+
+    new_password = "pozablivc"  #novo geslo k ga nastavi admin
+    hashed_pw = bcrypt.hashpw(new_password.encode("utf-8"), bcrypt.gensalt())  #hashiram novo geslo
+
+    with transaction(db) as tr:  #uporabim varno transakcijo
+        tr.update({"password": hashed_pw.decode("utf-8")}, User.username == username)  #posodobim geslo
+
+    return redirect(url_for("admin_dashboard"))  #nazaj na admin
+
 @app.route("/dashboard")
 def user_dashboard():
     if "username" not in session or session.get("is_admin"):  #če ni loginan ali je admin

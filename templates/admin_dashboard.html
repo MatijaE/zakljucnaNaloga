@@ -19,12 +19,18 @@
       padding: 10px;
       text-align: left;
     }
-    a.delete-btn {
-      color: red;
+    a.delete-btn, a.reset-btn {
       font-weight: bold;
       text-decoration: none;
     }
-    a.delete-btn:hover {
+    a.delete-btn {
+      color: red;
+    }
+    a.reset-btn {
+      color: orange;
+      margin-left: 10px;
+    }
+    a.delete-btn:hover, a.reset-btn:hover {
       text-decoration: underline;
     }
     a.logout-btn {
@@ -38,7 +44,7 @@
     code {
       font-family: monospace;
       font-size: 0.9em;
-      word-break: break-all;
+      word-break: break-word;
       color: #0ef;
     }
   </style>
@@ -52,19 +58,19 @@
     <tr>
       <th>Username</th>
       <th>Email</th>
-      <th>Geslo (hash)</th> <!-- Dodan stolpec -->
+      <th>Geslo (hash)</th>
       <th>Action</th>
     </tr>
     {% for username, data in users.items() %}
     <tr>
       <td>{{ username }}</td>
       <td>{{ data.email }}</td>
-      <td><code>{{ data.password }}</code></td> <!-- Prikaz hashiranega gesla -->
+      <td><code>{{ data.password }}</code></td> <!--prikaz hash-gesla-->
       <td>
         <a href="{{ url_for('delete_user', username=username) }}" class="delete-btn"
-           onclick="return confirm('Are you sure you want to delete {{ username }}?');">
-          Delete
-        </a>
+           onclick="return confirm('Are you sure you want to delete {{ username }}?');">Delete</a>
+        <a href="{{ url_for('reset_password', username=username) }}" class="reset-btn"
+           onclick="return confirm('Ponastavi geslo za {{ username }} na 123456?');">Reset</a>
       </td>
     </tr>
     {% endfor %}
