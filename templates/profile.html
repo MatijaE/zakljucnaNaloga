@@ -1,101 +1,93 @@
 <!DOCTYPE html>
-<html>
+<html lang="sl">
 <head>
-  <title>Moj profil</title>
-  <!-- za klikljive ikone -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moj profil - LiveCard</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <!-- orcode.js knjižnica -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <style>
-    body {
-      font-family: Arial;
-      background: #000;
-      color: #0ef;
-      padding: 20px;
-    }
-    .info {
-      margin-bottom: 10px;
-    }
-    a {
-      color: #0ef;
-      margin-top: 20px;
-      display: inline-block;
-      text-decoration: none;
-    }
-    img.profile-pic {
-      max-width: 150px;
-      border-radius: 50%; <!-- da je SAMO profilna slika okrogla -->
-      margin-bottom: 10px;
-    }
-    .social-icons a {
-      margin-right: 10px;
-      font-size: 24px;
-      color: #0ef;
-      text-decoration: none;
-    }
-    .social-icons a:hover {
-      color: white;
-    }
-    <!-- qr koda navaden kvadrat -->
-    #qrcode canvas {
-      border: 4px solid #0ef;
-      background-color: #000;
-    }
-  </style>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <h1>Moj profil</h1>
-
-  {% if user.profile_picture %}
-    <img src="{{ user.profile_picture }}" alt="Profilna slika" class="profile-pic">
-  {% endif %}
-
-  <div class="info"><strong>Ime:</strong> {{ user.first_name }}</div>
-  <div class="info"><strong>Priimek:</strong> {{ user.last_name }}</div>
-  <div class="info"><strong>Email:</strong> {{ user.email }}</div>
-  <div class="info"><strong>Telefon:</strong> {{ user.phone }}</div>
-  <div class="info"><strong>Bio:</strong> {{ user.bio }}</div>
-  <div class="info"><strong>Naslov:</strong> {{ user.address }}</div>
-  <div class="info"><strong>Spletna stran:</strong> <a href="{{ user.website }}" target="_blank">{{ user.website }}</a></div>
-
-  <div class="info">
-    <strong>Družabna omrežja:</strong>
-    <div class="social-icons">
-      {% if user.instagram %}<a href="{{ user.instagram }}" target="_blank"><i class="fab fa-instagram"></i></a>{% endif %}
-      {% if user.x %}<a href="{{ user.x }}" target="_blank"><i class="fab fa-x-twitter"></i></a>{% endif %}
-      {% if user.facebook %}<a href="{{ user.facebook }}" target="_blank"><i class="fab fa-facebook"></i></a>{% endif %}
-      {% if user.whatsapp %}<a href="{{ user.whatsapp }}" target="_blank"><i class="fab fa-whatsapp"></i></a>{% endif %}
-      {% if user.tiktok %}<a href="{{ user.tiktok }}" target="_blank"><i class="fab fa-tiktok"></i></a>{% endif %}
-      {% if user.snapchat %}<a href="{{ user.snapchat }}" target="_blank"><i class="fab fa-snapchat"></i></a>{% endif %}
-      {% if user.youtube %}<a href="{{ user.youtube }}" target="_blank"><i class="fab fa-youtube"></i></a>{% endif %}
-      {% if user.linkedin %}<a href="{{ user.linkedin }}" target="_blank"><i class="fab fa-linkedin"></i></a>{% endif %}
-      {% if user.discord %}<a href="{{ user.discord }}" target="_blank"><i class="fab fa-discord"></i></a>{% endif %}
+  <div class="navbar">
+    <h1>LiveCard</h1>
+    <div class="links">
+      <a href="{{ url_for('user_dashboard') }}">Nazaj</a>
+      <a href="{{ url_for('logout') }}">Odjava</a>
     </div>
   </div>
 
-  {% if user.website %}
-    <div class="info">
-      <strong>QR koda:</strong>
-      <div id="qrcode"></div>
-    </div>
+  <div class="content">
+    <div class="profile-container">
+      <h1>Moj profil</h1>
+
+      {% if user.profile_picture %}
+        <img src="{{ user.profile_picture }}" alt="Profilna slika" class="profile-pic">
+      {% endif %}
+
+      <div class="info">
+        <strong>Ime:</strong> {{ user.first_name }}
+      </div>
+      <div class="info">
+        <strong>Priimek:</strong> {{ user.last_name }}
+      </div>
+      <div class="info">
+        <strong>Email:</strong> {{ user.email }}
+      </div>
+      <div class="info">
+        <strong>Telefon:</strong> {{ user.phone }}
+      </div>
+      <div class="info">
+        <strong>Bio:</strong> {{ user.bio }}
+      </div>
+      <div class="info">
+        <strong>Naslov:</strong> {{ user.address }}
+      </div>
+      <div class="info">
+        <strong>Spletna stran:</strong> <a href="{{ user.website }}" target="_blank">{{ user.website }}</a>
+      </div>
+
+      <div class="info">
+        <strong>Družabna omrežja:</strong>
+        <div class="social-icons">
+          {% if user.instagram %}<a href="{{ user.instagram }}" target="_blank"><i class="fab fa-instagram"></i></a>{% endif %}
+          {% if user.x %}<a href="{{ user.x }}" target="_blank"><i class="fab fa-x-twitter"></i></a>{% endif %}
+          {% if user.facebook %}<a href="{{ user.facebook }}" target="_blank"><i class="fab fa-facebook"></i></a>{% endif %}
+          {% if user.whatsapp %}<a href="{{ user.whatsapp }}" target="_blank"><i class="fab fa-whatsapp"></i></a>{% endif %}
+          {% if user.tiktok %}<a href="{{ user.tiktok }}" target="_blank"><i class="fab fa-tiktok"></i></a>{% endif %}
+          {% if user.snapchat %}<a href="{{ user.snapchat }}" target="_blank"><i class="fab fa-snapchat"></i></a>{% endif %}
+          {% if user.youtube %}<a href="{{ user.youtube }}" target="_blank"><i class="fab fa-youtube"></i></a>{% endif %}
+          {% if user.linkedin %}<a href="{{ user.linkedin }}" target="_blank"><i class="fab fa-linkedin"></i></a>{% endif %}
+          {% if user.discord %}<a href="{{ user.discord }}" target="_blank"><i class="fab fa-discord"></i></a>{% endif %}
+        </div>
+      </div>
+
+      {% if user.website %}
+        <div class="info">
+          <strong>QR koda:</strong>
+          <div id="qrcode"></div>
+        </div>
     <!-- prikaže se sam, če obstaja user.website -->
 
     <!-- pomoč - predlagal prof! -->
     <!-- https://cdnjs.com/libraries/qrcodejs -->
     <!-- https://davidshimjs.github.io/qrcodejs/ -->
-    <script>
-      new QRCode(document.getElementById("qrcode"), {
-        text: "{{ user.website }}",   //povezava za qr
-        width: 128,
-        height: 128,
-        colorDark: "#0ef",
-        colorLight: "#000",
-        correctLevel: QRCode.CorrectLevel.H   //za perfektnost
-      });
-    </script>
-  {% endif %}
+        <script>
+          new QRCode(document.getElementById("qrcode"), {
+            text: "{{ user.website }}", //povezava za qr
+            width: 128,
+            height: 128,
+            colorDark: "#2d3748",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H //za perfektnost
+          });
+        </script>
+      {% endif %}
 
-  <a href="{{ url_for('edit_profile') }}">Uredi</a>
-  <a href="{{ url_for('user_dashboard') }}">Nazaj</a>
+      <div class="buttons">
+        <a href="{{ url_for('edit_profile') }}">Uredi profil</a>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

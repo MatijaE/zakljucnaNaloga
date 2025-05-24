@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LiveCard - Profil</title>
+  <title>{{ user.first_name }} {{ user.last_name }} - LiveCard</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
+<body class="public-profile-body">
   <div class="card-container">
     <div class="header">LiveCard</div>
     
@@ -28,19 +28,21 @@
         <script>
           new QRCode(document.getElementById("qrcode"), {
             text: "{{ user.website }}",
-            width: 128,
-            height: 128,
-            colorDark: "#000",
-            colorLight: "#fff",
+            width: 120,
+            height: 120,
+            colorDark: "#2d3748",
+            colorLight: "#ffffff",
             correctLevel: QRCode.CorrectLevel.H
           });
         </script>
       {% endif %}
 
-      <div class="info"><i class="fas fa-envelope"></i> {{ user.email }}</div>
-      <div class="info"><i class="fas fa-phone"></i> {{ user.phone }}</div>
-      <div class="info"><i class="fas fa-map-marker-alt"></i> {{ user.address }}</div>
-      <div class="info"><i class="fas fa-globe"></i> <a href="{{ user.website }}" target="_blank">{{ user.website }}</a></div>
+      <div class="contact-info">
+        {% if user.email %}<div class="info"><i class="fas fa-envelope"></i> {{ user.email }}</div>{% endif %}
+        {% if user.phone %}<div class="info"><i class="fas fa-phone"></i> {{ user.phone }}</div>{% endif %}
+        {% if user.address %}<div class="info"><i class="fas fa-map-marker-alt"></i> {{ user.address }}</div>{% endif %}
+        {% if user.website %}<div class="info"><i class="fas fa-globe"></i> <a href="{{ user.website }}" target="_blank">{{ user.website }}</a></div>{% endif %}
+      </div>
 
       <div class="social-icons">
         {% if user.instagram %}<a href="{{ user.instagram }}" target="_blank"><i class="fab fa-instagram"></i></a>{% endif %}

@@ -1,35 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html lang="sl">
 <head>
-  <title>Admin-dash</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin nadzorna plošča - LiveCard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <h1>Admin</h1>
-  <p>Živ, {{ session['username'] }}!</p>
+  <div class="navbar">
+    <h1>LiveCard</h1>
+    <div class="links">
+      <a href="{{ url_for('directory') }}">Imenik</a>
+      <a href="{{ url_for('logout') }}">Odjava</a>
+    </div>
+  </div>
 
-  <h2>Registrirani uporabniki</h2>
-  <table>
-    <tr>
-      <th>Ime</th>
-      <th>Email</th>
-      <th>Geslo (hash)</th>
-      <th>Možnosts</th>
-    </tr>
-    {% for username, data in users.items() %}
-    <tr>
-      <td>{{ username }}</td>
-      <td>{{ data.email }}</td>
-      <td><code>{{ data.password }}</code></td> <!--prikaz hash-gesla-->
-      <td>
-        <a href="{{ url_for('delete_user', username=username) }}" class="delete-btn"
-           onclick="return confirm('Are you sure you want to delete {{ username }}?');">Izbriši</a>
-        <a href="{{ url_for('reset_password', username=username) }}" class="reset-btn"
-           onclick="return confirm('Ponastavi geslo za {{ username }} na 123456?');">Ponastavi</a>
-      </td>
-    </tr>
-    {% endfor %}
-  </table>
+  <div class="content">
+    <div class="admin-container">
+      <h1><i class="fas fa-user-shield"></i> Admin nadzorna plošča</h1>
+      <p>Živ, <strong>{{ session['username'] }}</strong>!</p>
 
-  <p><a href="{{ url_for('logout') }}" class="logout-btn">Odjava</a></p>
+      <div style="background: linear-gradient(135deg, #0059ff 0%, #0040cc 100%); color: white; padding: 20px; border-radius: 12px; margin: 20px 0;">
+        <h3><i class="fas fa-info-circle"></i> Statistika</h3>
+        <p><strong>Skupno uporabnikov:</strong> {{ users|length }}</p>
+      </div>
+
+      <h2><i class="fas fa-users"></i> Registrirani uporabniki</h2>
+      
+      <div style="overflow-x: auto;">
+        <table>
+          <thead>
+            <tr>
+              <th><i class="fas fa-user"></i> Uporabniško ime</th>
+              <th><i class="fas fa-envelope"></i> Email</th>
+              <th><i class="fas fa-lock"></i> Geslo (hash)</th>
+              <th><i class="fas fa-cogs"></i> Možnosti</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for username, data in users.items() %}
+            <tr>
+              <td><strong>{{ username }}</strong></td>
+              <td>{{ data.email }}</td>
+              <td><code style="font-size: 12px; color: #6b7280;">{{ data.password[:20] }}...</code></td>
+              <td>
+                <a href="{{ url_for('delete_user', username=username) }}" class="delete-btn"
+                   onclick="return confirm('Ali ste prepričani, da želite izbrisati uporabnika {{ username }}?');">
+                  <i class="fas fa-trash"></i> Izbriši
+                </a>
+                <a href="{{ url_for('reset_password', username=username) }}" class="reset-btn"
+                   onclick="return confirm('Ponastavi geslo za {{ username }} na 123456?');">
+                  <i class="fas fa-key"></i> Ponastavi
+                </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      {% if not users %}
+        <div style="text-align: center; padding: 40px; color: #718096;">
+          <i class="fas fa-users" style="font-size: 48px; margin-bottom: 16px; opacity: 0.5;"></i>
+          <p>Ni registriranih uporabnikov.</p>
+        </div>
+      {% endif %}
+
+      <div style="margin-top: 40px; text-align: center;">
+        <a href="{{ url_for('logout') }}" class="logout-btn">
+          <i class="fas fa-sign-out-alt"></i> Odjava
+        </a>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

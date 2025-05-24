@@ -1,0 +1,1144 @@
+/* Reset in osnovni stili */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  min-height: 100vh;
+  color: #1a202c;
+  line-height: 1.6;
+}
+
+/* Navigacijska vrstica */
+.navbar {
+  background: linear-gradient(135deg, #0059ff 0%, #0040cc 100%);
+  color: white;
+  padding: 0 5vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  box-shadow: 0 4px 20px rgba(0, 89, 255, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar h1 {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.navbar .links {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.navbar .links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.navbar .links a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Glavni vsebinski del */
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* Stil za pristajalno stran (landing page) */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.wrapper h1 {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: white !important;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  max-width: 800px;
+  line-height: 1.2;
+}
+
+.wrapper h3 {
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 40px;
+  color: rgba(255, 255, 255, 0.9) !important;
+  max-width: 600px;
+}
+
+/* Gumbi */
+button, .btn {
+  background: linear-gradient(135deg, #0059ff 0%, #0040cc 100%);
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0, 89, 255, 0.3);
+  text-decoration: none;
+  display: inline-block;
+  margin: 10px;
+  min-width: 200px;
+}
+
+button:hover, .btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(0, 89, 255, 0.4);
+}
+
+/* Stili za obrazec */
+.form-wrapper {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  padding: 50px;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px;
+  margin: 20px;
+}
+
+.form-wrapper h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #2d3748;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 16px 20px;
+  font-size: 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  outline: none;
+  background: #f8fafc;
+  transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+  border-color: #0059ff;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(0, 89, 255, 0.1);
+}
+
+.input-group label {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  color: #718096;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.input-group input:focus + label,
+.input-group input:valid + label {
+  top: -10px;
+  left: 15px;
+  font-size: 12px;
+  color: #0059ff;
+  background: white;
+  padding: 0 8px;
+}
+
+.signUp-link {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.signUp-link p {
+  color: #718096;
+  font-size: 14px;
+}
+
+.signUp-link a {
+  color: #0059ff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.signUp-link a:hover {
+  text-decoration: underline;
+}
+
+/* Stili za nadzorno ploščo (dashboard) */
+.dashboard {
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.dashboard h1 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #2d3748;
+}
+
+.dashboard p {
+  font-size: 18px;
+  color: #718096;
+  margin-bottom: 40px;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.buttons a {
+  background: linear-gradient(135deg, #0059ff 0%, #0040cc 100%);
+  color: white;
+  text-decoration: none;
+  padding: 16px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 89, 255, 0.3);
+}
+
+.buttons a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 89, 255, 0.4);
+}
+
+/* Stil za profil */
+.profile-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #0059ff;
+  margin: 20px auto;
+  display: block;
+  box-shadow: 0 8px 25px rgba(0, 89, 255, 0.3);
+}
+
+.info {
+  margin: 20px 0;
+  padding: 16px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border-left: 4px solid #0059ff;
+}
+
+.info strong {
+  color: #2d3748;
+  display: inline-block;
+  width: 120px;
+  font-weight: 600;
+}
+
+.info a {
+  color: #0059ff;
+  text-decoration: none;
+}
+
+.info a:hover {
+  text-decoration: underline;
+}
+
+/* Ikone za družabna omrežja */
+.social-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 15px;
+  justify-content: center;
+}
+
+.social-icons a {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #0059ff 0%, #0040cc 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 89, 255, 0.3);
+}
+
+.social-icons a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 89, 255, 0.4);
+}
+
+/* Stil za QR kodo */
+#qrcode {
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 16px;
+  display: inline-block;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Urejanje profila – obrazec */
+.edit-form {
+  max-width: 600px;
+  margin: 0 auto;
+  background: white;
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.edit-form h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #2d3748;
+}
+
+.edit-form label {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.edit-form input,
+.edit-form textarea {
+  width: 100%;
+  padding: 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 16px;
+  background: #f8fafc;
+  transition: all 0.3s ease;
+}
+
+.edit-form input:focus,
+.edit-form textarea:focus {
+  outline: none;
+  border-color: #0059ff;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(0, 89, 255, 0.1);
+}
+
+.edit-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.save-btn {
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #0059ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.save-btn:hover {
+  background-color: #0041cc;
+}
+
+.cancel-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 10px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cancel-link {
+  font-size: 14px;
+  padding: 6px 14px;
+  background-color: #e2e8f0;
+  color: #2d3748;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+.cancel-link:hover {
+  background-color: #cbd5e0;
+}
+
+/* Slogi za imenik */
+.directory-content {
+  text-align: center;
+  margin-top: 32px;
+}
+
+.directory-content h2 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 32px;
+  color: #2d3748;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 0 20px;
+  width: 100%;
+  max-width: 600px;
+  height: 56px;
+  background: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.search-box:focus-within {
+  border-color: #0059ff;
+  box-shadow: 0 4px 20px rgba(0, 89, 255, 0.15);
+}
+
+.search-box i {
+  margin-right: 16px;
+  color: #9ca3af;
+  font-size: 18px;
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  font-size: 16px;
+  flex: 1;
+  background: transparent;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+  margin-top: 40px;
+}
+
+.profile-card {
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.profile-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border-color: #0059ff;
+}
+
+.profile-card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 20px;
+  border: 3px solid #0059ff;
+  box-shadow: 0 4px 15px rgba(0, 89, 255, 0.3);
+}
+
+.profile-card h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #2d3748;
+}
+
+.profile-card .info {
+  font-size: 16px;
+  color: #718096;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+
+.profile-card .info a {
+  color: #0059ff;
+  text-decoration: none;
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.profile-card .info a:hover {
+  text-decoration: underline;
+}
+
+.profile-card .info {
+  text-align: center;
+}
+
+.profile-card .info a {
+  display: inline-block; /* da se upošteva širina povezave */
+  margin: 0 auto;
+}
+
+
+/* Javni profil (poseben slog) */
+.public-profile {
+  width: 100%;
+  max-width: 400px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 0;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  margin: 20px auto;
+}
+
+.public-profile:hover {
+  transform: translateY(-5px);
+}
+
+.public-profile .header {
+  background: linear-gradient(135deg, #0059ff 0%, #0040cc 100%);
+  color: white;
+  padding: 24px;
+  text-align: left;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.public-profile .profile-section {
+  text-align: center;
+  padding: 40px 30px 30px;
+  position: relative;
+}
+
+.public-profile .profile-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid white;
+  object-fit: cover;
+  margin-top: -80px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.public-profile .profile-img:hover {
+  transform: scale(1.05);
+}
+
+.public-profile .name {
+  margin-top: 20px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #2d3748;
+  line-height: 1.2;
+}
+
+.public-profile .bio {
+  font-size: 16px;
+  color: #718096;
+  margin: 15px 0 30px;
+  line-height: 1.5;
+  max-width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.public-profile .qrcode {
+  margin: 0 auto 30px;
+  padding: 15px;
+  background: white;
+  border-radius: 16px;
+  display: inline-block;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.public-profile .contact-info {
+  margin: 30px 0;
+  text-align: left;
+}
+
+.public-profile .contact-info .info {
+  padding: 12px 16px;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: #4a5568;
+  transition: color 0.2s ease;
+  border-radius: 8px;
+  margin: 8px 0;
+  background: transparent;
+  border: none;
+}
+
+.public-profile .contact-info .info:hover {
+  background-color: rgba(0, 89, 255, 0.05);
+}
+
+.public-profile .contact-info .info i {
+  color: #0059ff;
+  min-width: 18px;
+  font-size: 16px;
+}
+
+/* Admin nadzorna plošča */
+.admin-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.admin-container h1 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #2d3748;
+}
+
+.admin-container h2 {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 40px 0 20px;
+  color: #2d3748;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+th, td {
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+th {
+  background: #f8fafc;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+tr:hover {
+  background: #f8fafc;
+}
+
+.delete-btn, .reset-btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  margin-right: 10px;
+  transition: all 0.3s ease;
+}
+
+.delete-btn {
+  background: #dc2626;
+  color: white;
+}
+
+.delete-btn:hover {
+  background: #b91c1c;
+}
+
+.reset-btn {
+  background: #f59e0b;
+  color: white;
+}
+
+.reset-btn:hover {
+  background: #d97706;
+}
+
+.logout-btn {
+  background: #6b7280;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: #4b5563;
+  transform: translateY(-2px);
+}
+
+/* Prilagodljiv dizajn */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 20px;
+    height: 70px;
+  }
+
+  .navbar h1 {
+    font-size: 24px;
+  }
+
+  .navbar .links {
+    gap: 15px;
+  }
+
+  .navbar .links a {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+
+  .wrapper h1 {
+    font-size: 32px;
+  }
+
+  .wrapper h3 {
+    font-size: 18px;
+  }
+
+  .form-wrapper {
+    padding: 30px;
+    margin: 10px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .profile-card {
+    height: auto;
+    min-height: 220px;
+    padding: 20px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content {
+    padding: 20px 10px;
+  }
+
+  .directory-content h2 {
+    font-size: 28px;
+  }
+
+  .search-box {
+    height: 48px;
+    padding: 0 16px;
+  }
+
+  .admin-container {
+    padding: 20px 10px;
+  }
+
+  table {
+    font-size: 14px;
+  }
+
+  th, td {
+    padding: 12px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 15px 20px;
+    gap: 15px;
+  }
+
+  .wrapper h1 {
+    font-size: 24px;
+  }
+
+  .form-wrapper {
+    padding: 20px;
+  }
+
+  .public-profile {
+    margin: 10px;
+  }
+
+  .public-profile .profile-section {
+    padding: 35px 20px 25px;
+  }
+
+  .public-profile .profile-img {
+    width: 100px;
+    height: 100px;
+    margin-top: -70px;
+  }
+
+  .social-icons a {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+  }
+}
+
+/* Animacija ob nalaganju */
+.card-container, .profile-card, .form-wrapper {
+  animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Sporočila o napakah */
+.error {
+  color: #dc2626;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+/* Sporočila o uspehu */
+.success {
+  color: #059669;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+
+/* Javni profil */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.public-profile-body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-container {
+  width: 100%;
+  max-width: 400px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 0;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.card-container:hover {
+  transform: translateY(-5px);
+}
+
+.header {
+  background: linear-gradient(135deg, #0059ff 0%, #0040cc 100%);
+  color: white;
+  padding: 24px;
+  text-align: left;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.profile-section {
+  text-align: center;
+  padding: 40px 30px 30px;
+  position: relative;
+}
+
+.profile-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid white;
+  object-fit: cover;
+  margin-top: -80px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.profile-img:hover {
+  transform: scale(1.05);
+}
+
+.name {
+  margin-top: 20px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #2d3748;
+  line-height: 1.2;
+}
+
+.first-name, .last-name {
+  display: inline;
+}
+
+.bio {
+  font-size: 16px;
+  color: #718096;
+  margin: 15px 0 30px;
+  line-height: 1.5;
+  max-width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.qrcode {
+  margin: 0 auto 30px;
+  padding: 15px;
+  background: white;
+  border-radius: 16px;
+  display: inline-block;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.contact-info {
+  margin: 30px 0;
+  text-align: left;
+}
+
+.info {
+  padding: 12px 0;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: #4a5568;
+  transition: color 0.2s ease;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 8px 0;
+}
+
+.info:hover {
+  background-color: rgba(0, 89, 255, 0.05);
+}
+
+.info i {
+  color: #0059ff;
+  min-width: 18px;
+  font-size: 16px;
+}
+
+.info a {
+  color: #0059ff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.info a:hover {
+  color: #0040cc;
+  text-decoration: underline;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  gap: 15px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.social-icons a {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #0059ff 0%, #0040cc 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 89, 255, 0.3);
+}
+
+.social-icons a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 89, 255, 0.4);
+}
+
+/* Prilagodljiv (odzivn) design */
+@media (max-width: 480px) {
+  .public-profile-body {
+    padding: 10px;
+  }
+  
+  .card-container {
+    max-width: 100%;
+    margin: 0;
+  }
+  
+  .header {
+    padding: 20px;
+    font-size: 16px;
+  }
+  
+  .profile-section {
+    padding: 35px 20px 25px;
+  }
+  
+  .profile-img {
+    width: 100px;
+    height: 100px;
+    margin-top: -70px;
+  }
+  
+  .name {
+    font-size: 24px;
+  }
+  
+  .bio {
+    font-size: 15px;
+    margin: 12px 0 25px;
+  }
+  
+  .info {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+  
+  .social-icons {
+    gap: 12px;
+  }
+  
+  .social-icons a {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 360px) {
+  .profile-section {
+    padding: 30px 15px 20px;
+  }
+  
+  .name {
+    font-size: 22px;
+  }
+  
+  .social-icons a {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+}
+
+/* Animacija ob nalaganju */
+.card-container {
+  animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
