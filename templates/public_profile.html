@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LiveCard - Profil</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+  <div class="card-container">
+    <div class="header">LiveCard</div>
+    
+    <div class="profile-section">
+      {% if user.profile_picture %}
+        <img src="{{ user.profile_picture }}" alt="Profilna slika" class="profile-img">
+      {% endif %}
+
+      <div class="name">
+        <span class="first-name">{{ user.first_name }}</span>
+        <span class="last-name">{{ user.last_name }}</span>
+      </div>
+      <div class="bio">{{ user.bio }}</div>
+
+      {% if user.website %}
+        <div id="qrcode" class="qrcode"></div>
+        <script>
+          new QRCode(document.getElementById("qrcode"), {
+            text: "{{ user.website }}",
+            width: 128,
+            height: 128,
+            colorDark: "#000",
+            colorLight: "#fff",
+            correctLevel: QRCode.CorrectLevel.H
+          });
+        </script>
+      {% endif %}
+
+      <div class="info"><i class="fas fa-envelope"></i> {{ user.email }}</div>
+      <div class="info"><i class="fas fa-phone"></i> {{ user.phone }}</div>
+      <div class="info"><i class="fas fa-map-marker-alt"></i> {{ user.address }}</div>
+      <div class="info"><i class="fas fa-globe"></i> <a href="{{ user.website }}" target="_blank">{{ user.website }}</a></div>
+
+      <div class="social-icons">
+        {% if user.instagram %}<a href="{{ user.instagram }}" target="_blank"><i class="fab fa-instagram"></i></a>{% endif %}
+        {% if user.x %}<a href="{{ user.x }}" target="_blank"><i class="fab fa-x-twitter"></i></a>{% endif %}
+        {% if user.facebook %}<a href="{{ user.facebook }}" target="_blank"><i class="fab fa-facebook"></i></a>{% endif %}
+        {% if user.whatsapp %}<a href="{{ user.whatsapp }}" target="_blank"><i class="fab fa-whatsapp"></i></a>{% endif %}
+        {% if user.tiktok %}<a href="{{ user.tiktok }}" target="_blank"><i class="fab fa-tiktok"></i></a>{% endif %}
+        {% if user.snapchat %}<a href="{{ user.snapchat }}" target="_blank"><i class="fab fa-snapchat"></i></a>{% endif %}
+        {% if user.youtube %}<a href="{{ user.youtube }}" target="_blank"><i class="fab fa-youtube"></i></a>{% endif %}
+        {% if user.linkedin %}<a href="{{ user.linkedin }}" target="_blank"><i class="fab fa-linkedin"></i></a>{% endif %}
+        {% if user.discord %}<a href="{{ user.discord }}" target="_blank"><i class="fab fa-discord"></i></a>{% endif %}
+      </div>
+    </div>
+  </div>
+</body>
+</html>

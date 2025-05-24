@@ -2,26 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Login - LiveCard</title>
+  <title>Prijava - LiveCard</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
   <div class="wrapper">
     <div class="form-wrapper sign-in">
       <form method="POST">
-        <h2>Login</h2>
+        <h2>Prijava</h2>
         {% if error %}<p style="color:red">{{ error }}</p>{% endif %}
         <div class="input-group">
           <input type="text" name="username" required>
-          <label>Username</label>
+          <label>Uporabniško ime</label>
         </div>
         <div class="input-group">
           <input type="password" name="password" required>
-          <label>Password</label>
+          <label>Geslo</label>
         </div>
-        <button type="submit">Login</button>
+        <button type="submit">Prijava</button>
         <div class="signUp-link">
-          <p>Don't have an account? <a href="{{ url_for('register') }}">Sign Up</a></p>
+          <p>Še nimaš računa? <a href="{{ url_for('register') }}">Registracija</a></p>
         </div>
       </form>
     </div>

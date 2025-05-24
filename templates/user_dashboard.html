@@ -1,12 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>User Dashboard</title>
-  <style>
-    body { font-family: Arial; background: #000; color: #0ef; padding: 20px; }
-    a { color: #0ef; margin-right: 20px; }
-    .buttons { margin-top: 20px; }
-  </style>
+  <title>Nadzorna plošča</title>
 </head>
 <body>
   <h1>Živ, {{ username }}!</h1>
@@ -15,8 +10,8 @@
   <div class="buttons">
     <a href="{{ url_for('profile') }}">Moj profil</a>
     <a href="{{ url_for('edit_profile') }}">Uredi profil</a>
-    <a href="{{ url_for('logout') }}">Logout</a>
     <a href="{{ url_for('directory') }}">Imenik</a>
+    <a href="{{ url_for('logout') }}">Odjava</a>
   </div>
 </body>
 </html>

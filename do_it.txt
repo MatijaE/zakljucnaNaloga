@@ -1,9 +1,9 @@
 💪🏼💪🏼💪🏼💪🏼💪🏼💪🏼💪🏼💪🏼nadaljuj!!!!!!:
-❗https://livecard.app/...    ->  http://localhost:5000/view/...
+✅❗https://livecard.app/...    ->  http://localhost:5000/view/...
 
-   ⭕️da posodobim funkcijo generate_website() za localhost...
-   ⭕️potem dodam novo pot(route) - k ta prkazuje javne profile
-   ⭕️public_profile - za obiskovalce ne /profile zto da ni potrebna prijava!! ampak direktno do profila!
+  ✅ ⭕️da posodobim funkcijo generate_website() za localhost...
+  ✅ ⭕️potem dodam novo pot(route) - k ta prkazuje javne profile
+  ✅ ⭕️public_profile - za obiskovalce ne /profile zto da ni potrebna prijava!! ampak direktno do profila!
 
 ❗validacija podatkov na strani strežnika: v app-u preveriš ali so vnešeni podatki pravilni 
       npr: URL-ji za družbena omrežja, profilna slika in številka za telefon ... dodam v /edit_profile v POST delu

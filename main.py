@@ -105,10 +105,11 @@ def logout():
     session.clear()  #zbriše sejo ob odjavi
     return redirect(url_for("login"))  #po odjavi gre nazaj na prijavo
 
+#generira javni link do profila uporabnika
 def generate_website(user):
-    if "email" in user and user["email"]:  #če ima uporabnik email
-        email_prefix = user["email"].split("@")[0]  #generiram unikatno povezavo
-        return f"https://livecard.app/{email_prefix}"
+    if "email" in user and user["email"]:  #če ima email
+        email_prefix = user["email"].split("@")[0]  #generiram samo del pred @
+        return f"http://localhost:5001/view/{email_prefix}"  #ustvarim javni link
     return None  #če ni emaila vrnem None
 
 @app.route("/profile")
@@ -167,5 +168,15 @@ def directory():
 
     return render_template("directory.html", users=users)  #prikažem seznam uporabnikov
 
+#nova pot za javn ogled profila brez prijave
+@app.route("/view/<email_prefix>")
+def public_profile(email_prefix):
+    all_users = db.all()  #dobim vse uporabnike
+    for user in all_users:
+        if "email" in user and user["email"].split("@")[0] == email_prefix:
+            user["website"] = generate_website(user)  #generiram javni link
+            return render_template("public_profile.html", user=user)  #prkažem javni profil
+    return "Uporabnik ni najden", 404  #če ni najden
+
 if __name__ == "__main__":
-    app.run(debug=True)  #zagon v debug načinu
+    app.run(host="0.0.0.0", port=5001, debug=True)  #zagon v debug načinu

@@ -1,68 +1,161 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Imenik uporabnikov</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User directory</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    body { font-family: Arial; background: #000; color: #0ef; padding: 20px; }
-    table { border-collapse: collapse; width: 100%; color: white; }
-    th, td { border: 1px solid #0ef; padding: 10px; vertical-align: top; text-align: center; }
-    img.profile-pic { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; }
-    .social-icons a {
-      margin: 0 5px;
-      font-size: 20px;
-      color: #0ef;
-      text-decoration: none;
+    body {
+      margin: 0;
+      font-family: 'Inter', 'Helvetica Neue', sans-serif;
+      background-color: #ffffff;
+      color: #000000;
+      padding: 0 5vw;
     }
-    .social-icons a:hover {
-      color: white;
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .navbar h1 {
+      font-size: 32px;
+      font-weight: bold;
+    }
+
+    .navbar .links a {
+      margin-left: 40px;
+      text-decoration: none;
+      color: #000000;
+      font-weight: 500;
+    }
+
+    .content {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    .content h2 {
+      font-size: 28px;
+      margin-bottom: 32px;
+    }
+
+    .search-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 32px;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 0 16px;
+      width: 100%;
+      max-width: 600px;
+      height: 48px;
+    }
+
+    .search-box i {
+      margin-right: 12px;
+      color: #9ca3af;
+    }
+
+    .search-box input {
+      border: none;
+      outline: none;
+      font-size: 16px;
+      flex: 1;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 32px;
+      justify-content: center;
+    }
+
+    .profile-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-sizing: border-box;
+      height: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .profile-card img {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 16px;
+      align-self: center;
+    }
+
+    .profile-card h3 {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .profile-card .info {
+      font-size: 14px;
+      color: #4b5563;
+    }
+
+    .profile-card .info a {
+      color: #2563eb;
+      text-decoration: underline;
+      word-break: break-word;
+    }
+
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Imenik uporabnikov</h1>
-  <table>
-    <tr>
-      <th>Slika</th>
-      <th>Ime</th>
-      <th>Priimek</th>
-      <th>Email</th>
-      <th>Telefon</th>
-      <th>Opis</th>
-      <th>Naslov</th>
-      <th>Družabna omrežja</th>
-    </tr>
-    {% for user in users %}
-    <tr>
-      <td>
+  <div class="navbar">
+    <h1>Kontakti</h1>
+    <div class="links">
+      <a href="{{ url_for('user_dashboard') }}" class="back-link">Nazaj</a>
+      <a href="{{ url_for('logout') }}">Odjava</a>
+    </div>
+  </div>
+
+  <div class="content">
+    <h2>Profili</h2>
+    <div class="search-container">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Išči">
+      </div>
+    </div>
+
+    <div class="grid">
+      {% for user in users %}
+      <div class="profile-card">
         {% if user.profile_picture %}
-          <img src="{{ user.profile_picture }}" alt="Profilna slika" class="profile-pic">
-        {% else %}
-          brez slike
+        <img src="{{ user.profile_picture }}" alt="Profile picture">
         {% endif %}
-      </td>
-      <td>{{ user.first_name }}</td>
-      <td>{{ user.last_name }}</td>
-      <td>{{ user.email }}</td>
-      <td>{{ user.phone }}</td>
-      <td>{{ user.bio }}</td>
-      <td>{{ user.address }}</td>
-      <td>
-        <div class="social-icons">
-          {% if user.instagram %}<a href="{{ user.instagram }}" target="_blank"><i class="fab fa-instagram"></i></a>{% endif %}
-          {% if user.x %}<a href="{{ user.x }}" target="_blank"><i class="fab fa-x-twitter"></i></a>{% endif %}
-          {% if user.facebook %}<a href="{{ user.facebook }}" target="_blank"><i class="fab fa-facebook"></i></a>{% endif %}
-          {% if user.whatsapp %}<a href="{{ user.whatsapp }}" target="_blank"><i class="fab fa-whatsapp"></i></a>{% endif %}
-          {% if user.tiktok %}<a href="{{ user.tiktok }}" target="_blank"><i class="fab fa-tiktok"></i></a>{% endif %}
-          {% if user.snapchat %}<a href="{{ user.snapchat }}" target="_blank"><i class="fab fa-snapchat"></i></a>{% endif %}
-          {% if user.youtube %}<a href="{{ user.youtube }}" target="_blank"><i class="fab fa-youtube"></i></a>{% endif %}
-          {% if user.linkedin %}<a href="{{ user.linkedin }}" target="_blank"><i class="fab fa-linkedin"></i></a>{% endif %}
-          {% if user.discord %}<a href="{{ user.discord }}" target="_blank"><i class="fab fa-discord"></i></a>{% endif %}
+        <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+        <div class="info">
+          <a href="{{ user.website }}" target="_blank">{{ user.website }}</a>
         </div>
-      </td>
-    </tr>
-    {% endfor %}
-  </table>
-  <p><a href="{{ url_for('user_dashboard') }}" style="color:#0ef;">Nazaj</a></p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
 </body>
 </html>
