@@ -1,3 +1,4 @@
+# pip install -r requirements.txt
 from flask import Flask, render_template, request, redirect, url_for, session
 from tinydb import TinyDB, Query
 from tinyrecord import transaction  #za varno uporabo baze če več uporabnikov hkrati uporablja aplikacijo
@@ -180,3 +181,5 @@ def public_profile(email_prefix):
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5001, debug=True)  #zagon v debug načinu
+
+# gunicorn -w 4 -b 0.0.0.0:5001 main:app

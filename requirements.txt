@@ -1,0 +1,5 @@
+flask
+tinydb
+tinyrecord
+bcrypt
+gunicorn
