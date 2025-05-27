@@ -27,7 +27,9 @@
 
     <div class="grid" id="profileGrid">
       {% for user in users %}
-      <div class="profile-card" data-name="{{ user.first_name|lower }} {{ user.last_name|lower }}">
+      <div class="profile-card"
+          data-name="{{ user.first_name|lower }} {{ user.last_name|lower }}"
+          data-email="{{ user.email|lower }}">
         {% if user.profile_picture %}
         <img src="{{ user.profile_picture }}" alt="Profilna slika">
         {% else %}
@@ -45,5 +47,24 @@
       {% endfor %}
     </div>
   </div>
+  <script>
+    //ko uporabnik vpiše nekaj v iskalnik
+    document.getElementById("searchInput").addEventListener("input", function () {
+      const query = this.value.toLowerCase(); //pretvori v male črke (neobčutljivo na velike/male črke)
+      const cards = document.querySelectorAll(".profile-card"); //izberi vse profile
+
+      cards.forEach(card => {
+        const name = card.getAttribute("data-name");   //vzemi ime in priimek
+        const email = card.getAttribute("data-email"); //vzemi email
+
+        //če iskalni niz obstaja v imenu ali emailu
+        if (name.includes(query) || email.includes(query)) {
+          card.style.display = "block"; //prikaži kartico
+        } else {
+          card.style.display = "none";  //skrij kartico
+        }
+      });
+    });
+  </script>
 </body>
 </html>
