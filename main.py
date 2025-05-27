@@ -1,10 +1,11 @@
 # pip install -r requirements.txt
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 from tinydb import TinyDB, Query
 from tinyrecord import transaction  #za varno uporabo baze če več uporabnikov hkrati uporablja aplikacijo
 import os
 import secrets
 import bcrypt  #za hashiranje gesel da so varni
+import random
 
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)  #za varnost seje
@@ -110,7 +111,7 @@ def logout():
 def generate_website(user):
     if "email" in user and user["email"]:  #če ima email
         email_prefix = user["email"].split("@")[0]  #generiram samo del pred @
-        return f"http://localhost:5001/view/{email_prefix}"  #ustvarim javni link
+        return f"https://fictional-space-journey-4jg7r4wxv97935rg9-5001.app.github.dev/{email_prefix}"  #ustvarim javni link
     return None  #če ni emaila vrnem None
 
 @app.route("/profile")
@@ -178,6 +179,24 @@ def public_profile(email_prefix):
             user["website"] = generate_website(user)  #generiram javni link
             return render_template("public_profile.html", user=user)  #prkažem javni profil
     return "Uporabnik ni najden", 404  #če ni najden
+
+def get_random_public_user():
+    all_users = db.all()
+    #filtriram samo tiste k imajo email (s tem generiram spletno stran)
+    public_users = [user for user in all_users if "email" in user and user["email"]]
+    if not public_users:
+        return None  #ni uporabnikov z javnim-prof
+    return random.choice(public_users)  #naključni javni
+
+@app.route("/api/random_profile")
+def random_profile():
+    user = get_random_public_user()
+    if user:
+        public_url = generate_website(user)  #uporabim funkcijo za generiranje url-ja
+        if public_url:
+            return jsonify({"url": public_url})  #vrnem URL v JSON formatu
+    return jsonify({"error": "Ni javnih profilov."})  #če ni javnih profilov
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5001, debug=True)  #zagon v debug načinu
